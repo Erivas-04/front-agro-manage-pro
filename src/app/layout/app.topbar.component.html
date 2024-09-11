@@ -1,7 +1,7 @@
 <div class="layout-topbar">
-    <a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-        <span>SAKAI</span>
+    <a class="layout-topbar-logo" [routerLink]="'/modulos/inicio'">
+        <img src="assets/demo/images/login/logoumg.png" alt="logo">
+        <span>Agro Manage Pro</span>
     </a>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
@@ -13,17 +13,25 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button class="p-link layout-topbar-button">
-            <i class="pi pi-calendar"></i>
-            <span>Calendar</span>
-        </button>
-        <button class="p-link layout-topbar-button">
+        <!-- <button class="p-link layout-topbar-button" [model]="options" [routerLink]="'/auth/login'">
             <i class="pi pi-user"></i>
             <span>Profile</span>
-        </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
+        </button> -->
+        
+        <p-splitButton styleClass="p-button-options" icon="pi pi-user" [model]="options"></p-splitButton>
+        <button class="p-link layout-topbar-button" [routerLink]="'/modulos/configuraciones'">
             <i class="pi pi-cog"></i>
             <span>Settings</span>
         </button>
+        <ng-container *ngIf="color != 'dark'; else elseBlock">
+            <button class="p-link layout-topbar-button" (click)="changeTheme('bootstrap4-dark-blue', 'dark')">
+                <img src="assets/layout/images/themes/bootstrap4-dark-blue.svg" class="w-2rem h-2rem" alt="Bootstrap Dark Blue">
+            </button>
+        </ng-container>
+        <ng-template #elseBlock>
+            <button class="p-link layout-topbar-button" (click)="changeTheme('bootstrap4-light-blue', 'light')">
+                <img src="assets/layout/images/themes/bootstrap4-light-blue.svg" class="w-2rem h-2rem" alt="Bootstrap Light Blue">
+            </button>
+        </ng-template>
     </div>
 </div>

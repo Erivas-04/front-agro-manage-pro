@@ -11,7 +11,8 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
             margin-right: 1rem;
             color: var(--primary-color) !important;
         }
-    `]
+    `],
+    styleUrl: "./login.component.css"
 })
 export class LoginComponent {
 
