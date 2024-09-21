@@ -1,12 +1,17 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { CompanyResponse } from './../interfaces/Response/company';
+import { Component, ElementRef, ViewChild, OnInit, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
+import { CompanyService } from '../service/api/company.service';
 
 @Component({
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html'
 })
 export class AppTopBarComponent implements OnInit{
+
+    private companySerice = inject(CompanyService);
+    public company: CompanyResponse;
 
     options: MenuItem[] = [];
 
@@ -41,12 +46,26 @@ export class AppTopBarComponent implements OnInit{
     loading = [false, false, false, false];
 
     ngOnInit() {
+        const asig = localStorage.getItem("asig")
+
+        this.companySerice.get(asig)
+        .subscribe({
+            next:(data) => {
+                if(data.hability){
+                    this.company = data
+                }
+            }
+        })
+
         this.theme = "bootstrap4-dark-blue";
         this.colorScheme = "dark";
         this.color = "dark"
         this.options = [
-            { label: 'Salir', icon: 'pi pi-fw pi-sign-out', routerLink: ['/auth/login']},
-            { label: 'Cambiar Contraseña', icon: 'pi pi-fw pi-key', routerLink: ['/auth/changepassword']}
+            { label: 'Salir', icon: 'pi pi-fw pi-sign-out', routerLink: ['/auth/login'], command: () =>{
+                localStorage.setItem("token", null);
+                localStorage.setItem("asig", null);
+            } },
+            { label: 'Cambiar Contraseña', icon: 'pi pi-fw pi-key', routerLink: ['/auth/changepassword'] }
         ];
     }
 
@@ -63,5 +82,19 @@ export class AppTopBarComponent implements OnInit{
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService) { 
+        this.company = {
+            id: 0,
+            hability: true,
+            company_name: "",
+            usernameExtension: "",
+            address: "", 
+            nit: "",
+            owner: "",
+            tel: "",
+            observations: "",
+            department: "",
+            state: ""
+        };
+    }
 }

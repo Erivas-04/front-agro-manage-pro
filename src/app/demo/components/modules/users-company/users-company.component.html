@@ -1,0 +1,48 @@
+<div class="grid">
+    <div class="col-12">
+        
+    @if (userSelected != null) {
+        <app-user [user]="userSelected" (goBack)="Back()"/>
+    }
+    @else if (company != null) {
+        <app-create-user [company]="company" (goBack)="Back()"/>
+    }
+    @else{
+        <div class="card">
+            <h2>Usuarios</h2>       
+            <div class="col-12 grid">
+                <div class="field col-12 md:col-5">
+                </div>
+                <button style="height: 30px;" pButton pRipple (click)="CreateUser()" type="button" label="Crear usuario" class="p-button-success" icon="pi pi-plus"></button>
+            </div>
+            <p-table [value]="usersList" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 200px;" >Nombre</th>
+                        <th style="width: 200px;" >Apellido</th>
+                        <th style="width: 200px;" >Usuario</th>
+                        <th style="width: 200px;" >Telefono</th>
+                        <th style="width: 200px;" >Habilitado</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user>
+                    <tr (click)="cargarUsuario(user)">
+                        <td style="width: 200px;">{{user.firstname}}</td>
+                        <td style="width: 200px;">{{user.lastname}}</td>
+                        <td style="width: 200px;">{{user.username}}</td>
+                        <td style="width: 200px;">{{user.tel}}</td>
+                        <td style="align-items: center;">
+                            <ng-container *ngIf="user.hability; else elseHability">
+                                <i class="pi pi-check-circle" style="padding-left: 25px; font-size: 20px;" ></i>
+                            </ng-container>
+                            <ng-template #elseHability>
+                                <i class="pi pi-ban" style="padding-left: 25px; font-size: 20px;"></i>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    }
+    </div>
+</div>

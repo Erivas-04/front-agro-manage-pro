@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
         { path: 'animales', loadChildren: () => import('./animals/animals.module').then(m => m.AnimalsModule)},
         { path: 'movimientos', loadChildren: () => import('./movement/movement.module').then(m => m.MovementModule)},
         { path: 'configuraciones', loadChildren: () => import('./configurations/configurations.module').then(m => m.ConfigurationModule)}, 
+        { path: 'usuarios', loadChildren: () => import('./users-company/users-company.module').then(m => m.UsersCompanyModule)},
         { path: '**', redirectTo: '/notfound'}
     ])],
     exports: [RouterModule]

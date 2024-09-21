@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="col-12">
+
+        <p-steps [model]="items" [readonly]="false">
+            
+        </p-steps>
+        <p-toast key="success"></p-toast>
+        <button (click)="updateUser()" type="submit" class="submit-form-login" pButton label="Guardar"></button>
+
+        <button (click)="goBack.emit()" pButton pRipple type="button" label="Salir" class="p-button-outlined p-button-info"></button>
+    </div>
+</div>

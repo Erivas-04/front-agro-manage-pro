@@ -1,25 +1,35 @@
 <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
-        <div class="col-12 md:col-6">
-            <div class="text-center mb-5 login">
-                <div class="p-fluid card">
-                    <h2 class="text-900">Ingresar</h2>
-                    <form action="GET" class="field">
-                        <span class="p-input-icon-left login-form-input">
-                            <i class="pi pi-user"></i>
-                            <input class="login-form-input" type="text" pInputText placeholder="Usuario"/>
-                        </span>
-                        <span class="p-input-icon-left login-form-input">
-                            <i class="pi pi-lock"></i>
-                            <input class="login-form-input" type="password" pInputText placeholder="Contraseña"/>
-                        </span>
-                        <button type="submit" class="submit-form-login" pButton pRipple label="Ingresar" [routerLink]="['/modulos/inicio']" ></button>
-                    </form>
-                </div>
+    <div class="col-12 md:col-6">
+        <div class="text-center mb-5 login">
+            <div class="p-fluid card">
+                <h2 class="text-900">Ingresar</h2>
+                <form class="field" [formGroup]="formLogin">
+                    <span class="p-input-icon-left login-form-input">
+                        <i class="pi pi-user"></i>
+                        <ng-container *ngIf="validUser; else: elseUsername">
+                            <input formControlName="username_form" class="login-form-input" type="text" pInputText placeholder="Usuario"/>
+                        </ng-container>
+                        <ng-template #elseUsername>
+                            <input formControlName="username_form" class="login-form-input ng-invalid ng-dirty" type="text" pInputText placeholder="Usuario"/>
+                        </ng-template>
+                    </span>
+                    <span class="p-input-icon-left login-form-input">
+                        <i class="pi pi-lock"></i>
+                        <ng-container *ngIf="validUser; else: elsePassword">
+                            <input formControlName="password_form" class="login-form-input" type="password" pInputText placeholder="Contraseña"/>
+                        </ng-container>
+                        <ng-template #elsePassword>
+                            <input formControlName="password_form" class="login-form-input ng-invalid ng-dirty" type="password" pInputText placeholder="Contraseña"/>
+                        </ng-template>
+                    </span>
+                    <button (click)="iniciarSesion()" type="submit" class="submit-form-login" pButton pRipple label="Ingresar"></button>
+                </form>
             </div>
         </div>
-        <div class="col-12 md:col-6">
-            <div class="card text-center mb-5">
-                <img src="assets/demo/images/login/logoumg.png" alt="Logo" height="550" class="mb-3">
-            </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="card text-center mb-5">
+            <img src="assets/demo/images/login/logoumg.png" alt="Logo" height="550" class="mb-3">
         </div>
+    </div>
 </div>

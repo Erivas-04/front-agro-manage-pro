@@ -1,0 +1,49 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h2>Crear un nuevo usuario en {{company.company_name}}</h2>
+            
+        <form class="p-fluid p-formgrid grid field" [formGroup]="createForm">
+            <div class="field col-12 md:col-6">
+                <label htmlfor="nombre">Nombres</label>
+                <input pInputText type="text" formControlName="firstname" >
+            </div>
+            <div class="field col-12 md:col-6">
+                <label htmlfor="apellido">Apellidos</label>
+                <input pInputText type="text" formControlName="lastname" >
+            </div>
+            <div class="field col-12 md:col-6">
+                <label htmlfor="ususario">Usuario</label>
+                <input pInputText type="text" formControlName="username" >
+            </div>
+            <div class="field col-12 md:col-6">
+                <label htmlfor="extensionEmpresa">Empresa</label>
+                <input pInputText type="text" readonly="true" value="{{company.usernameExtension}}" />
+            </div>
+            <div class="field col-12 md:col-6">
+                <label htmlfor="tel">Contraseña</label>
+                <input pInputText type="text" formControlName="password" >
+            </div>
+            <div class="field col-12 md:col-6">
+                <label htmlfor="tel">Telefono</label>
+                <input pInputText type="text" formControlName="tel" >
+            </div>
+            <div class="field-checkbox col-12">
+                <input type="checkbox" formControlName="hability" id="hability">
+                <label class="space" for="hability">Habilitado</label>
+                <input type="checkbox" formControlName="changePassword" id="changePassword">
+                <label class="space" for="changePassword">Cambiar Contraseña</label>
+                <input type="checkbox" formControlName="changePasswordNextSession" id="changePasswordNextSession">
+                <label class="space" for="changePasswordNextSession">Cambiar contraseña en inicio de sesion</label>
+            </div>      
+            
+
+        </form>
+        <p-toast key="create"></p-toast>
+        <button (click)="saveUser()" type="submit" class="submit-form-login" pButton label="Guardar"></button>
+
+        <button (click)="goBack.emit()" pButton pRipple type="button" label="Salir" class="p-button-outlined p-button-info"></button>
+
+        </div>
+    </div>
+</div>
