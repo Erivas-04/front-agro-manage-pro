@@ -1,6 +1,6 @@
 <div class="card">
     <!-- <div class="grid p-fluid mt-3"> -->
-        <form action="" class="grid p-fluid mt-3">
+        <form class="grid p-fluid mt-3 field">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
                     <input type="text"
@@ -21,17 +21,52 @@
             <div class="field col-12 md:col-3"></div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <p-dropdown 
+                    <!-- <p-dropdown 
                         inputId="dropdown"
                         [options]="values"
                         [autoDisplayFirst]="false"
-                        optionLabel="name"></p-dropdown>
+                        optionLabel="name"></p-dropdown> -->
                     <label for="dropdown">Animal</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
-                <button type="submit" icon="pi pi-fw pi-search" pButton pRipple label="Buscar"></button>
+                <button (click)="SearchCage()" icon="pi pi-fw pi-search" pButton pRipple label="Buscar"></button>
+
+            </div>
+            <div class="field col-12 md:col-3"></div>
+            <div class="field col-12 md:col-2">
+                <button type="button" icon="pi pi-plus" class="p-button-success" (click)="display=true" pButton pRipple label="Crear corral"></button>
             </div>
         </form>
+        <p-dialog header="Crear corral" [(visible)]="display" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '80vw'}">
+            <app-create-cage (close)="closeCreation()"/>
+        </p-dialog>
+            
     <!-- </div> -->
+    <div class="">
+        <p-table [value]="cagesList" responsiveLayout="scroll" scrollDirection="both" [scrollable]="true" scrollHeight="400px" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="code">Codigo <p-sortIcon field="code"></p-sortIcon></th>
+                    <th>Nombre</th>
+                    <th>Animal</th>
+                    <th># animales</th>
+                    <th>Concentrado</th>
+                    <th># concentrado</th>
+                    <th>Ajustes</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-cage>
+                <tr>
+                    <td style="width: 14%;">{{cage.code}}</td>
+                    <td style="width: 14%;">{{cage.name}}</td>
+                    <td style="width: 14%;">{{cage.animal_name}}</td>
+                    <td style="width: 14%;">{{cage.feedanimal}}</td>
+                    <td style="width: 14%;">{{cage.concentrate_name}}</td>
+                    <td style="width: 14%;">{{cage.feedconcentrate | number:'1.2-2'}}</td>
+                    <td style="width: 14%;"><button type="button"  pButton type="button" icon="pi pi-bookmark" class="p-button-rounded p-button-secondary p-button-text" ></button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>

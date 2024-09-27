@@ -1,8 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { User } from 'src/app/interfaces/Response/user';
+import { User } from 'src/app/interfaces/Response';
 import { UserService } from 'src/app/service/api/user.service';
-import { UserSelectService } from 'src/app/service/data/user-select.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +9,6 @@ import { UserSelectService } from 'src/app/service/data/user-select.service';
 })
 export class HomeComponent implements OnInit{
   public user: User;
-  private userSelect = inject(UserSelectService)
   private userService = inject(UserService)
 
   ngOnInit(): void {

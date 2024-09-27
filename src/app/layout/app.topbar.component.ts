@@ -1,8 +1,9 @@
-import { CompanyResponse } from './../interfaces/Response/company';
+import { CompanyResponse } from './../interfaces/Response';
 import { Component, ElementRef, ViewChild, OnInit, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
 import { CompanyService } from '../service/api/company.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-topbar',
@@ -11,6 +12,7 @@ import { CompanyService } from '../service/api/company.service';
 export class AppTopBarComponent implements OnInit{
 
     private companySerice = inject(CompanyService);
+    private router = inject(Router);
     public company: CompanyResponse;
 
     options: MenuItem[] = [];
@@ -54,6 +56,9 @@ export class AppTopBarComponent implements OnInit{
                 if(data.hability){
                     this.company = data
                 }
+            },
+            error: (error) => {
+                this.router.navigate(['auth/login']);
             }
         })
 

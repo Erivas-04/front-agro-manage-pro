@@ -1,9 +1,10 @@
-import { User } from 'src/app/interfaces/Response/user';
+import { User } from 'src/app/interfaces/Response';
 import { UsersCompanyService } from '../../../../service/api/users-company.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { CompanyResponse } from 'src/app/interfaces/Response/company';
+import { CompanyResponse } from 'src/app/interfaces/Response';
 import { CompanyService } from 'src/app/service/api/company.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-company',
@@ -13,6 +14,7 @@ import { CompanyService } from 'src/app/service/api/company.service';
 export class UsersCompanyComponent implements OnInit{
   private usersCompanyService = inject(UsersCompanyService);
   private companyApiService = inject(CompanyService);
+  private router = inject(Router);
   public userSelected?: User = null;
   public company?: CompanyResponse = null;
   public usersList: User[] = [];
@@ -28,7 +30,10 @@ export class UsersCompanyComponent implements OnInit{
     .subscribe({
       next: (data)=>{
         this.usersList = data;
-      }
+      },
+      error: (error) => {
+        this.router.navigate(['auth/login'])
+      } 
     });
   }
 

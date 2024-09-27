@@ -1,0 +1,25 @@
+ <div class="grid">
+    <div class="col-12 p-fluid">
+        <form [formGroup]="createAnimalForm" class="p-formgrid field grid">
+            <div class="field col md:col-12">
+                <label htmlFor="animal_name">Nombre del animal</label>
+                <input type="text" pInputText  formControlName="animal_name" id="animal_name">
+            </div>
+            <div class="field col col-12">
+                <label htmlFor="observations">Observaciones</label>
+                <input type="text" pInputText  formControlName="observations" id="observations">
+            </div>
+            <div class="col-12">
+                <div class="field-checkbox">
+                    <p-inputSwitch formControlName="hability" id="hability"/>
+                    <label for="hability">Habilitado</label>
+                </div>
+            </div>
+
+        </form>
+        <div class="flex flex-wrap gap-2 layout-footer">
+            <button pButton (click)="createAnimal()" type="submit" label="Agregar" icon="pi pi-plus" class="p-button-raised p-button-success"></button>
+            <p-button label="cerrar" (click)="close.emit()" styleClass="p-button-link"></p-button>
+        </div>
+    </div>
+</div>

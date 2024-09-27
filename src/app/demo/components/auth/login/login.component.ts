@@ -3,8 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/api/login-api.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { Login } from 'src/app/interfaces/Request/login';
-import { UserSelectService } from 'src/app/service/data/user-select.service';
+import { Login } from 'src/app/interfaces/Request';
 import { UserService } from 'src/app/service/api/user.service';
 
 @Component({
@@ -26,6 +25,8 @@ export class LoginComponent{
     private router = inject(Router); 
     private _formBuilder = inject(FormBuilder);
 
+    public seePassword = false;
+
     inputValue: string = '';
 
     validUser: boolean = true;
@@ -37,12 +38,18 @@ export class LoginComponent{
         password_form: ['', Validators.required]
     });
 
+    changePasswordView(): void {
+        this.seePassword = !this.seePassword;
+    }
+
 
     iniciarSesion(): void {
 
         this.validUser = true;
 
-        if(this.formLogin.invalid)return;
+        if(this.formLogin.invalid){
+            this.formLogin.markAllAsTouched;
+            return};
         
         const body: Login = {
             username: this.formLogin.value.username_form,
@@ -68,14 +75,13 @@ export class LoginComponent{
 
                 }else{
                     alert("Credenciales Incorrectas");
+                    this.validUser = false;
 
                 }
             },
             error:(error) => {
                 alert("Credenciales Incorrectas");
-                this.validUser = false;
                 // colcar un alert pop para las credenciales incorrectas
-                console.log(error.message);
             }
         })
     }

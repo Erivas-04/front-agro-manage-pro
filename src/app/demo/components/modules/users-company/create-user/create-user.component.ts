@@ -1,8 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CompanyResponse } from './../../../../../interfaces/Response/company';
+import { CompanyResponse } from './../../../../../interfaces/Response';
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { CreateUser } from 'src/app/interfaces/Request/user';
+import { CreateUser } from 'src/app/interfaces/Request';
 import { UsersCompanyService } from 'src/app/service/api/users-company.service';
 
 @Component({

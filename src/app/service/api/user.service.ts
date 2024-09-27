@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { appsettings } from '../../settings/appsettings';
 import { Observable } from 'rxjs';
-import { User } from '../../interfaces/Response/user';
-import { PutUser } from 'src/app/interfaces/Request/user';
-import { Message } from 'src/app/interfaces/Response/acces';
+import { User } from '../../interfaces/Response';
+import { PutPassword, PutUser } from 'src/app/interfaces/Request';
+import { Message } from 'src/app/interfaces/Response';
 
 
 @Injectable({
@@ -22,5 +22,9 @@ export class UserService {
 
   put(body: PutUser, id: number): Observable<Message>  {
     return this.http.put<Message>(`${this.base}/${id}/update`, body);
+  }
+
+  putPassword(body: PutPassword, id: number): Observable<Message> {
+    return this.http.put<Message>(`${this.base}/${id}/update/password`, body);
   }
 }

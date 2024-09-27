@@ -1,8 +1,6 @@
 import { OnInit, inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
-import { User } from '../interfaces/Response/user';
-import { UserSelectService } from '../service/data/user-select.service';
 
 @Component({
     selector: 'app-menu',
@@ -13,7 +11,7 @@ export class AppMenuComponent implements OnInit {
     
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService, public userselectService: UserSelectService) { }
+    constructor(public layoutService: LayoutService) { }
 
     ngOnInit() {
         this.model = [

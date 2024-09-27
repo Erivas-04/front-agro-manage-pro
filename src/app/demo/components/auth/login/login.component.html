@@ -4,24 +4,44 @@
             <div class="p-fluid card">
                 <h2 class="text-900">Ingresar</h2>
                 <form class="field" [formGroup]="formLogin">
-                    <span class="p-input-icon-left login-form-input">
-                        <i class="pi pi-user"></i>
-                        <ng-container *ngIf="validUser; else: elseUsername">
-                            <input formControlName="username_form" class="login-form-input" type="text" pInputText placeholder="Usuario"/>
-                        </ng-container>
-                        <ng-template #elseUsername>
-                            <input formControlName="username_form" class="login-form-input ng-invalid ng-dirty" type="text" pInputText placeholder="Usuario"/>
-                        </ng-template>
+                    <span class="p-float-label">
+                        <input formControlName="username_form" id="username" class="login-form-input" type="text" pInputText/>
+                        @if (formLogin.get('username_form')?.hasError('required') ) {
+                            <label for="username" class="p-error">Ingrese su usuario</label>
+                        }
+                        @else {
+                            <label for="username" class="p-error">Ingrese su usuario</label>
+
+                        }
                     </span>
-                    <span class="p-input-icon-left login-form-input">
-                        <i class="pi pi-lock"></i>
-                        <ng-container *ngIf="validUser; else: elsePassword">
-                            <input formControlName="password_form" class="login-form-input" type="password" pInputText placeholder="Contraseña"/>
-                        </ng-container>
-                        <ng-template #elsePassword>
-                            <input formControlName="password_form" class="login-form-input ng-invalid ng-dirty" type="password" pInputText placeholder="Contraseña"/>
-                        </ng-template>
+                    
+                    <span class="p-float-label p-input-icon-right">
+                        @if (!seePassword) {
+                            <input formControlName="password_form" id="password" class="login-form-input" type="password" pInputText />
+                            @if (formLogin.get('password_form')?.hasError('required')) {
+                                <label for="password" class="p-error">Ingrese su contraseña</label>
+                            }
+                            @else {
+                                <label for="password" class="p-error">Ingrese su contraseña</label>
+    
+                            }
+                            <i class="pi pi-eye" (click)="changePasswordView()"></i>
+                            
+                        }
+                        @else {
+                            <input formControlName="password_form" id="password" class="login-form-input" type="text" pInputText/>
+                            @if (formLogin.get('password_form')?.hasError('required')) {
+                                <label for="password" class="p-error">Ingrese su contraseña</label>
+                            }
+                            @else {
+                                <label for="password" class="p-error">Ingrese su contraseña</label>
+    
+                            }
+                            <i class="pi pi-eye-slash" (click)="changePasswordView()"></i>
+                            
+                        }
                     </span>
+                    
                     <button (click)="iniciarSesion()" type="submit" class="submit-form-login" pButton pRipple label="Ingresar"></button>
                 </form>
             </div>

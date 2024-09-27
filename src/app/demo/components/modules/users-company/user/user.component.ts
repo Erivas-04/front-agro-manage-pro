@@ -1,8 +1,8 @@
 import { UserService } from 'src/app/service/api/user.service';
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { User } from 'src/app/interfaces/Response/user';
+import { User } from 'src/app/interfaces/Response';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PutUser } from 'src/app/interfaces/Request/user';
+import { PutPassword, PutUser } from 'src/app/interfaces/Request';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -18,7 +18,10 @@ export class UserComponent implements OnInit{
   private formBuilder = inject(FormBuilder);
   private userApiService = inject(UserService);
 
-  public putForm: FormGroup;
+  public putForm?: FormGroup;
+  public changePassword?: FormGroup;
+
+  public actUser: boolean = true;
 
   constructor(private messageService: MessageService){
   }
@@ -39,13 +42,43 @@ export class UserComponent implements OnInit{
       hability: [this.user.hability],
       changePassword: [this.user.changePassword],
       changePasswordNextSession: [this.user.changePasswordNextSession]
-    })
+    });
+
+    this.changePassword = this.formBuilder.group({
+      password: ['', Validators.required]
+    });
   }
 
   items = [
-    {label: 'Actualizar Usuairo'},
-    {label: 'Actualizar Contrasena'}
+    {label: 'Actualizar Usuairo',
+      command: () => {
+        this.actUser = true;
+      }
+    },
+    {label: 'Actualizar Contrasena', 
+      command: () => {
+        this.actUser = false;
+      }
+    }
   ]
+
+  putChangePassword(): void{
+    if(this.changePassword.invalid)return;
+    
+    const body: PutPassword = {
+      password: this.changePassword.value.password
+    }
+
+    this.userApiService.putPassword(body, this.user.id)
+    .subscribe({
+      next: (data) => {
+        this.messageService.add({ key: 'success', severity: 'success', summary: 'Contraseña actualizada', detail: data.message})
+      },
+      error: (error) => {
+        alert("Algo salio mal")
+      }
+    })
+  }
 
   updateUser(): void{
     if(this.putForm.invalid)return;

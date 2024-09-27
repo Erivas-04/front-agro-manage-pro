@@ -1,11 +1,57 @@
 <div class="card">
     <div class="col-12">
+        
 
-        <p-steps [model]="items" [readonly]="false">
-            
-        </p-steps>
+        <div class="flex">
+            <div class="col-12 h-full">
+                <p-tabMenu styleClass="mt-6" [model]="items"></p-tabMenu>
+            </div>
+        </div>        
+
+        @if (actUser) {
+            <form class="p-fluid p-formgrid grid field" [formGroup]="putForm">
+                <div class="field col-12 md:col-6">
+                    <label htmlfor="nombre">Nombres</label>
+                    <input pInputText type="text" formControlName="firstname" >
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlfor="apellido">Apellidos</label>
+                    <input pInputText type="text" formControlName="lastname" >
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlfor="ususario">Usuario</label>
+                    <input pInputText type="text" formControlName="username" >
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlfor="extensionEmpresa">Empresa</label>
+                    <input pInputText type="text" readonly="true" formControlName="usernameExtension"/>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlfor="tel">Telefono</label>
+                    <input pInputText type="text" formControlName="tel" >
+                </div>
+                <div class="field-checkbox col-12">
+                    <input type="checkbox" formControlName="hability" id="hability">
+                    <label class="space" for="hability">Habilitado</label>
+                    <input type="checkbox" formControlName="changePassword" id="changePassword">
+                    <label class="space" for="changePassword">Cambiar Contraseña</label>
+                    <input type="checkbox" formControlName="changePasswordNextSession" id="changePasswordNextSession">
+                    <label class="space" for="changePasswordNextSession">Cambiar contraseña en inicio de sesion</label>
+                </div>   
+            </form>
+            <button (click)="updateUser()" type="submit" class="submit-form-login" pButton label="Guardar"></button>
+
+        }
+        @else {
+            <form [formGroup]="changePassword" class="p-fluid p-formgrid grid field">
+                <div class="field col-12">
+                    <label htmlfor="nombre">Nueva contraseña</label>
+                    <input pInputText type="password" formControlName="password" >
+                </div>
+            </form>
+            <button (click)="putChangePassword()" type="submit" class="submit-form-login" pButton label="Guardar"></button>
+        }
         <p-toast key="success"></p-toast>
-        <button (click)="updateUser()" type="submit" class="submit-form-login" pButton label="Guardar"></button>
 
         <button (click)="goBack.emit()" pButton pRipple type="button" label="Salir" class="p-button-outlined p-button-info"></button>
     </div>
