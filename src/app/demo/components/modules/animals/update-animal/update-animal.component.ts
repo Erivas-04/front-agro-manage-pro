@@ -16,7 +16,6 @@ export class UpdateAnimalComponent implements OnInit{
   // injecciones
   private formBuilder = inject(FormBuilder);
   private animalService = inject(AnimalService);
-  private messageService = inject(MessageService);
   
   // variables globales
   public updateForm: FormGroup;

@@ -66,3 +66,9 @@ export interface AnimalDTO {
     observations: string,
     hability: boolean
 }
+
+export interface ConcentrateDTO {
+    concentrate_name: string,
+    observations: string,
+    hability: boolean
+}

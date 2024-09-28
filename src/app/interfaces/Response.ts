@@ -54,3 +54,10 @@ export interface Animal {
     observations: string,
     hability: boolean
 }
+
+export interface Concentrate {
+    id: number,
+    concentrate_name: string,
+    hability: boolean,
+    observations: string
+}

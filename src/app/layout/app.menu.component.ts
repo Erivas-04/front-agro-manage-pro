@@ -21,9 +21,10 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/modulos/inicio']},
                     { label: 'Corrales', icon: 'pi pi-fw pi-box', routerLink: ['/modulos/corrales']},
                     { label: 'Crianza', icon: 'pi pi-fw pi-twitter', routerLink: ['/modulos/animales']},
+                    { label: 'Concentrados', icon: 'pi pi-fw pi-filter', routerLink: ['/modulos/concentrados']},
                     { label: 'Movimientos', icon: 'pi pi-fw pi-book', routerLink: ['/modulos/movimientos']},
                     { label: 'Configuraciones', icon: 'pi pi-fw pi-th-large', routerLink: ['/modulos/configuraciones']},
-                    { label: 'Usuarios', icon:'pi pi-fw pi-users', routerLink: ['/modulos/usuarios'] }
+                    { label: 'Usuarios', icon:'pi pi-fw pi-users', routerLink: ['/modulos/usuarios'] },
                 ]
             }
         ];

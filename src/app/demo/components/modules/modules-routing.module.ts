@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
         { path: 'movimientos', loadChildren: () => import('./movement/movement.module').then(m => m.MovementModule)},
         { path: 'configuraciones', loadChildren: () => import('./configurations/configurations.module').then(m => m.ConfigurationModule)}, 
         { path: 'usuarios', loadChildren: () => import('./users-company/users-company.module').then(m => m.UsersCompanyModule)},
+        { path: 'concentrados', loadChildren: () => import('./concentrate/concentrate.module').then(m => m.ConcentrateModule)},
         { path: '**', redirectTo: '/notfound'}
     ])],
     exports: [RouterModule]
