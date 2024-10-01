@@ -1,16 +1,33 @@
 <div class="grid">
     <div class="col-12">
-        <form name="createform" class="p-fluid p-formgrid grid field" [formGroup]="createForm">
-            <div class="field col-12 md:col-6">
+        <form name="createform" class="p-fluid p-formgrid grid field" [formGroup]="createCageForm">
+            <div class="field col-12 md:col-4">
                 <label htmlfor="nombre">Codigo</label>
-                <input [(ngModel)]="code" pInputText type="text" formControlName="code">
+                <input pInputText type="text" formControlName="code">
             </div>
-            <div class="field col-12 md:col-6">
+            <div class="field col-12 md:col-4">
+                <label htmlFor="amount_animal">Cantidad de animales</label>
+                <input pInputText type="number" formControlName="animalAmount">
+            </div>
+            <div class="field col-12 md:col-4">
+                <label htmlFor="animal_select">Animal</label>
+                <p-dropdown [options]="animals" formControlName="animalAsig"></p-dropdown>
+            </div>
+            <div class="field col-12 md:col-4">
                 <label htmlfor="nombre">Nombre</label>
-                <input [(ngModel)]="name" pInputText type="text" formControlName="name">
+                <input pInputText type="text" formControlName="name">
+            </div>
+            <div class="field col-12 md:col-4">
+                <label htmlFor="concentrate_amount">Cantidad de concentrado</label>
+                <input pInputText type="number" formControlName="concentrateAmount">
+            </div>
+            
+            <div class="field col-12 md:col-4">
+                <label htmlFor="concentrate_select">Concentrado</label>
+                <p-dropdown [options]="concentrates" formControlName="concentrateAsig"></p-dropdown>
             </div>
             <div class="field-checkbox col-12">
-                <input [(ngModel)]="active" type="checkbox" formControlName="active" id="active">
+                <input type="checkbox" formControlName="active" id="active">
                 <label for="active">Activado</label>
             </div>
         </form>

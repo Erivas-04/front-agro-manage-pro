@@ -75,7 +75,7 @@ export class LoginComponent{
 
                 }else{
                     alert("Credenciales Incorrectas");
-                    this.validUser = false;
+                    this.formLogin.markAllAsTouched;
 
                 }
             },
