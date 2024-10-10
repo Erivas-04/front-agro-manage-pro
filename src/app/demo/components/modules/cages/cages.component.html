@@ -47,7 +47,7 @@
                 <tr>
                     <th pSortableColumn="code">Codigo <p-sortIcon field="code"></p-sortIcon></th>
                     <th>Nombre</th>
-                    <th>Animal</th>
+                    <th >Animal</th>
                     <th># animales</th>
                     <th>Concentrado</th>
                     <th># concentrado</th>
@@ -55,12 +55,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-cage>
                 <tr (click)="modifyCage(cage)">
-                    <td style="width: 16%;">{{cage.code}}</td>
-                    <td style="width: 16%;">{{cage.name}}</td>
+                    <td style="width: 10%;">{{cage.code}}</td>
+                    <td style="width: 26%;">{{cage.name}}</td>
                     <td style="width: 16%;">{{cage.animalAsigned.animalName}}</td>
-                    <td style="width: 16%;">{{cage.animalAsigned.animalAmount}}</td>
+                    <td style="width: 10%;">{{cage.animalAsigned.animalAmount}}</td>
                     <td style="width: 16%;">{{cage.concentrateAsigned.concentrateName}}</td>
-                    <td style="width: 16%;">{{cage.concentrateAsigned.concentrateAmount | number:'1.2-2'}}</td>
+                    <td style="width: 10%;">{{cage.concentrateAsigned.concentrateAmount | number:'1.2-2'}}</td>
                 </tr>
             </ng-template>
         </p-table>

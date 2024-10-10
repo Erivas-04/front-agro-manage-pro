@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyResponse } from './../../../../../interfaces/Response';
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { CreateUser } from 'src/app/interfaces/Request';
 import { UsersCompanyService } from 'src/app/service/api/users-company.service';
 
@@ -18,6 +18,7 @@ export class CreateUserComponent implements OnInit{
   private asignedApiService = inject(UsersCompanyService);
 
   public createForm: FormGroup;
+  public roles: SelectItem[] = []
 
   ngOnInit(): void {
     this.createForm = this.formbuilder.group({
@@ -25,11 +26,17 @@ export class CreateUserComponent implements OnInit{
       password: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
+      role: [0, Validators.required],
       tel: [''],
       hability: [''],
       changePassword: [''],
       changePasswordNextSession: ['']
-    })
+    });
+
+    this.roles = [
+      {label: 'Usuario', value: 0},
+      {label: 'Administrador', value: 1}
+    ]
   }
 
   saveUser(): void{
@@ -45,10 +52,12 @@ export class CreateUserComponent implements OnInit{
       firstname: this.createForm.value.firstname,
       lastname: this.createForm.value.lastname,
       tel: this.createForm.value.tel,
+      role: this.createForm.value.role,
       hability: this.createForm.value.hability,
       changePassword: this.createForm.value.changepassword,
       changePasswordNextSession: this.createForm.value.changePasswordNextSession
     }
+    console.log(body)
 
     this.asignedApiService.post(body)
     .subscribe({

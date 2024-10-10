@@ -35,6 +35,7 @@ export interface CreateUser {
     password: string,
     firstname: string,
     lastname: string,
+    role: number,
     tel: string,
     hability: boolean,
     changePassword: boolean,

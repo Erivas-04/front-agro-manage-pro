@@ -25,6 +25,15 @@
                 <input pInputText type="password" formControlName="password" >
             </div>
             <div class="field col-12 md:col-6">
+                <label for="dropRole">Seleccione un rol</label>
+                    <p-dropdown
+                        inputId="dropRole"
+                        formControlName="role"
+                        [options]="roles"
+                        >
+                    </p-dropdown>
+            </div>
+            <div class="field col-12 md:col-6">
                 <label htmlfor="tel">Telefono</label>
                 <input pInputText type="text" formControlName="tel" >
             </div>

@@ -23,6 +23,7 @@
                         <th style="width: 200px;" >Usuario</th>
                         <th style="width: 200px;" >Telefono</th>
                         <th style="width: 200px;" >Habilitado</th>
+                        <th style="width: 200px;" >Rol</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-user>
@@ -39,6 +40,7 @@
                                 <i class="pi pi-ban" style="padding-left: 25px; font-size: 20px;"></i>
                             </ng-template>
                         </td>
+                        <td style="width: 200px;">{{user.role}}</td>
                     </tr>
                 </ng-template>
             </p-table>

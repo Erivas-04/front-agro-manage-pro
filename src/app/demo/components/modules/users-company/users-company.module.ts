@@ -16,6 +16,7 @@ import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { CreateUserComponent } from "./create-user/create-user.component";
 import { TabMenuModule } from 'primeng/tabmenu';
+import { DropdownModule } from "primeng/dropdown";
 
 @NgModule ({
     imports: [
@@ -33,6 +34,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
         ToastModule,
         RippleModule,
         ToggleButtonModule,
+        DropdownModule,
         TabMenuModule
     ],
     declarations: [UsersCompanyComponent, UserComponent, CreateUserComponent]

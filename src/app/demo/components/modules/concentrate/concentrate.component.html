@@ -29,7 +29,7 @@
                             }
                         </td>
                         <td class="rows">
-                            <p-dialog header="Crear concentrado" [(visible)]="displayU" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '20vw'}">
+                            <p-dialog header="Modificar concentrado" [(visible)]="displayU" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '20vw'}">
                                 @if (displayU) {
                                     <app-update-concentrate [concentrate]="concentrateSelect" (close)="closeDialog($event)"/>
                                 }
