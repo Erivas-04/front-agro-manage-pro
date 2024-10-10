@@ -18,19 +18,15 @@ export class CagesService {
     return this.http.get<Cage[]>(`${this.base}/${id}/asig`);
   }
 
-  post(body: CreateCage): Observable<Message> {
-    return this.http.post<Message>(`${this.base}/create`, body);
+  getOne(id_cage: number): Observable<Cage> {
+    return this.http.get<Cage>(`${this.base}/${id_cage}/select`)
+  }
+
+  post(body: CreateCage): Observable<Cage> {
+    return this.http.post<Cage>(`${this.base}/create`, body);
   }
 
   put(body: PutCage, id: number): Observable<Message> {
     return this.http.put<Message>(`${this.base}/${id}/update`, body);
-  }
-
-  asigAnimal(id_cage: number, body: AsigAnimal): Observable<Message> {
-    return this.http.patch<Message>(`${this.base}/${id_cage}/animal/set`, body);
-  }
-
-  asigConcentrate(id_cage: number, id_concentrate): Observable<Message> {
-    return this.http.patch<Message>(`${this.base}/${id_cage}/cage/${id_concentrate}/concentrate/asig`, null);
   }
 }

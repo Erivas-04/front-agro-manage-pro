@@ -21,12 +21,10 @@
             <div class="field col-12 md:col-3"></div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <!-- <p-dropdown 
-                        inputId="dropdown"
-                        [options]="values"
-                        [autoDisplayFirst]="false"
-                        optionLabel="name"></p-dropdown> -->
-                    <label for="dropdown">Animal</label>
+                    <p-dropdown 
+                        inputId="animal"
+                        [options]="animals" />
+                    <label for="animal">Animal</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
@@ -38,13 +36,13 @@
                 <button type="button" icon="pi pi-plus" class="p-button-success" (click)="display=true" pButton pRipple label="Crear corral"></button>
             </div>
         </form>
-        <p-dialog header="Crear corral" [(visible)]="display" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '80vw'}">
-            <app-create-cage (close)="closeCreation()"/>
+        <p-dialog header="Crear corral" [(visible)]="display" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '30vw'}">
+            <app-create-cage (close)="closeCreation()" (cageCreatedOutput)="modifyCage($event)"/>
         </p-dialog>
             
     <!-- </div> -->
     <div class="">
-        <p-table [value]="cagesList" responsiveLayout="scroll" scrollDirection="both" [scrollable]="true" scrollHeight="400px" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+        <p-table [value]="cagesList" responsiveLayout="scroll" scrollDirection="both" [scrollable]="false" scrollHeight="400px" [paginator]="true" [rows]="10">
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="code">Codigo <p-sortIcon field="code"></p-sortIcon></th>
@@ -53,20 +51,25 @@
                     <th># animales</th>
                     <th>Concentrado</th>
                     <th># concentrado</th>
-                    <th>Ajustes</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-cage>
-                <tr>
-                    <td style="width: 14%;">{{cage.code}}</td>
-                    <td style="width: 14%;">{{cage.name}}</td>
-                    <td style="width: 14%;">{{cage.animal_name}}</td>
-                    <td style="width: 14%;">{{cage.feedanimal}}</td>
-                    <td style="width: 14%;">{{cage.concentrate_name}}</td>
-                    <td style="width: 14%;">{{cage.feedconcentrate | number:'1.2-2'}}</td>
-                    <td style="width: 14%;"><button type="button"  pButton type="button" icon="pi pi-bookmark" class="p-button-rounded p-button-secondary p-button-text" ></button></td>
+                <tr (click)="modifyCage(cage)">
+                    <td style="width: 16%;">{{cage.code}}</td>
+                    <td style="width: 16%;">{{cage.name}}</td>
+                    <td style="width: 16%;">{{cage.animalAsigned.animalName}}</td>
+                    <td style="width: 16%;">{{cage.animalAsigned.animalAmount}}</td>
+                    <td style="width: 16%;">{{cage.concentrateAsigned.concentrateName}}</td>
+                    <td style="width: 16%;">{{cage.concentrateAsigned.concentrateAmount | number:'1.2-2'}}</td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
+    <p-dialog header="Opciones de corral" [(visible)]="modifi" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '80vw'}">
+        @if (modifi) {
+        <app-modify-cage (close)="closeCreation()" (modify)="cageModified($event)" [cage]="cageSelect"/>
+        }
+    </p-dialog>
+    <p-toast key="create"></p-toast>
+    <p-toast key="modify"></p-toast>
 </div>

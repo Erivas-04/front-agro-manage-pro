@@ -19,12 +19,26 @@ export class AppMenuComponent implements OnInit {
                 label: 'Modulos',
                 items: [
                     { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/modulos/inicio']},
-                    { label: 'Corrales', icon: 'pi pi-fw pi-box', routerLink: ['/modulos/corrales']},
-                    { label: 'Crianza', icon: 'pi pi-fw pi-twitter', routerLink: ['/modulos/animales']},
-                    { label: 'Concentrados', icon: 'pi pi-fw pi-filter', routerLink: ['/modulos/concentrados']},
-                    { label: 'Movimientos', icon: 'pi pi-fw pi-book', routerLink: ['/modulos/movimientos']},
-                    { label: 'Configuraciones', icon: 'pi pi-fw pi-th-large', routerLink: ['/modulos/configuraciones']},
-                    { label: 'Usuarios', icon:'pi pi-fw pi-users', routerLink: ['/modulos/usuarios'] },
+
+                    { label: 'Crianza', icon: 'pi pi-fw pi-bookmark', items: 
+                        [{ label: 'Corrales', icon: 'pi pi-fw pi-box', routerLink: ['/modulos/corrales']},
+                        { label: 'Crianza', icon: 'pi pi-fw pi-twitter', routerLink: ['/modulos/animales']},
+                        { label: 'Concentrados', icon: 'pi pi-fw pi-filter', routerLink: ['/modulos/concentrados']},]    
+                    },
+
+                    { label: 'Movimientos', icon: 'pi pi-fw pi-calendar-plus' ,items: [
+                        { label: 'Dar de baja', icon: 'pi pi-fw pi-list'},
+                        { label: 'Traslados', icon: 'pi pi-fw pi-truck'},
+                        { label: 'Registros', icon: 'pi pi-fw pi-book', routerLink: ['/modulos/movimientos']},
+                        ]
+                    },
+
+                    { label: 'Empresa', icon: 'pi pi-fw pi-building' ,items: 
+                        [
+                            { label: 'Configuraciones', icon: 'pi pi-fw pi-th-large', routerLink: ['/modulos/configuraciones']},
+                            { label: 'Usuarios', icon:'pi pi-fw pi-users', routerLink: ['/modulos/usuarios'] },
+                        ]
+                    }
                 ]
             }
         ];

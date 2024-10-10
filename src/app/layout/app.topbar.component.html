@@ -18,11 +18,12 @@
             <span>Profile</span>
         </button> -->
         
-        <p-splitButton styleClass="p-button-options" icon="pi pi-user" [model]="options"></p-splitButton>
         <button class="p-link layout-topbar-button" [routerLink]="'/modulos/configuraciones'">
             <i class="pi pi-cog"></i>
             <span>Settings</span>
         </button>
+        <button style="margin: 0;" pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+        <p-menu #menu [popup]="true" [model]="options"></p-menu>
         <ng-container *ngIf="color != 'dark'; else elseBlock">
             <button class="p-link layout-topbar-button pi pi-moon" (click)="changeTheme('bootstrap4-dark-blue', 'dark')">
             </button>

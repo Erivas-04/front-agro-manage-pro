@@ -44,7 +44,7 @@ export class UpdateAnimalComponent implements OnInit{
       error: (error) => {
         console.error(error);
       }
-    })
+    });
   }
 
 }

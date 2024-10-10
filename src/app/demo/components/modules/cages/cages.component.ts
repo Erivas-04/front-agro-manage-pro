@@ -1,4 +1,5 @@
-import { MessageService } from 'primeng/api';
+import { AnimalService } from './../../../../service/api/animal.service';
+import { MessageService, SelectItem } from 'primeng/api';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cage, Message } from 'src/app/interfaces/Response';
@@ -6,25 +7,44 @@ import { CagesService } from 'src/app/service/api/cages.service';
 
 @Component({
   selector: 'app-cages',
-  templateUrl: './cages.component.html'
+  templateUrl: './cages.component.html',
+  providers: [MessageService]
 })
 export class CagesComponent implements OnInit {
   // importacion e injecciones de servicios
   private cageService = inject(CagesService);
+  private animalService = inject(AnimalService);
   private router = inject(Router);
+  private messageService = inject(MessageService);
   
   // creacion de variables globales
-  public cagesList: Cage[] = [];
   public display: boolean = false;
   public createCage: boolean = false;
   public show: boolean = false;
+  public modifi: boolean = false;
+  public cagesList: Cage[] = [];
+  public animals: SelectItem[] = [];
+  public cageSelect: Cage = null;
 
   ngOnInit(): void {
-    this.getData();
+    const asig = localStorage.getItem("asig");
+    this.getData(asig);
+
+    this.animalService.get(parseInt(asig))
+    .subscribe({
+      next: (data) => {
+        data.forEach((animal, index) => {
+          if(animal.hability) {
+            this.animals.push({label: animal.animal_name, value: animal.id})
+          }
+        })
+      }
+    });
+
+    console.log(this.animals)
   }
 
-  getData(): void {
-    const asig = localStorage.getItem("asig");
+  getData(asig): void {
 
     this.cageService.get(parseInt(asig))
     .subscribe({
@@ -38,8 +58,28 @@ export class CagesComponent implements OnInit {
     })
   }
 
+  cageModified(message: Message){
+    this.messageService.add({ key: "modify", severity: 'info', summary: 'Corral actualizado', detail: message.message})
+  }
+
+  modifyCage(cage: Cage): void {
+    if(this.display) {
+      this.messageService.add({ key: 'create', severity: 'success', summary: 'Corral creado', detail: 'Corral creado correctamente'})
+    }
+    this.cageSelect = cage;
+    console.log(this.cageSelect);
+    this.display = false;
+    this.modifi = true;
+  }
+
   closeCreation(): void {
-    window.location.reload();
+    const asig = localStorage.getItem("asig");
+    this.getData(asig);
+    this.display = false;
+    this.createCage = false;
+    this.show = false;
+    this.modifi = false;
+    this.cageSelect = null;
   }
 
   SearchCage(): void {

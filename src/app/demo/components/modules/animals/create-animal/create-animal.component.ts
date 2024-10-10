@@ -46,7 +46,12 @@ export class CreateAnimalComponent implements OnInit{
     this.animalService.post(asig, body)
     .subscribe({
       next: (data) => {
-        window.location.reload();
+        this.createAnimalForm = this.formBuilder.group({
+          animal_name: ['', Validators.required],
+          observations: [''],
+          hability: false
+        });
+        this.close.emit();
       },
       error: (error) => {
         console.error(error);

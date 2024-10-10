@@ -34,17 +34,27 @@ export interface User {
     changePasswordNextSession: boolean
 }
 
+export interface AnimalAsigned {
+    animalId: number,
+    animalName: string,
+    animalAmount: number
+}
+
+export interface ConcentrateAsigned {
+    concentrateId: number, 
+    concentrateName : string,
+    concentrateAmount: number
+}
+
 export interface Cage {
     id: number,
     user: number,
-    animal_name: string,
-    concentrate_name: string,
+    concentrateAsigned: ConcentrateAsigned,
+    animalAsigned: AnimalAsigned,
     code: string,
     name: string,
     active: boolean,
-    observations: string,
-    feedconcentrate: number,
-    feedanimal: number
+    observations: string
 }
 
 export interface Animal {

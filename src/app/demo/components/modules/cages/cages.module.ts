@@ -13,7 +13,12 @@ import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RippleModule } from 'primeng/ripple';
-
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { StyleClassModule } from 'primeng/styleclass';
+import { ModifyCageComponent } from "./modify-cage/modify-cage.component";
+import { TabMenuModule } from 'primeng/tabmenu';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
     imports: [
         CommonModule,
@@ -28,8 +33,13 @@ import { RippleModule } from 'primeng/ripple';
         ButtonModule,
         MenuModule,
         ToastModule,
-        RippleModule
+        RippleModule,
+        PanelMenuModule,
+        StyleClassModule,
+        TabMenuModule,
+        InputSwitchModule,
+        InputNumberModule
     ],
-    declarations: [CagesComponent, CreateCageComponent]
+    declarations: [CagesComponent, CreateCageComponent, ModifyCageComponent]
 })
 export class CagesModules {}

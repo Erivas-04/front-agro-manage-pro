@@ -45,6 +45,7 @@ export interface CreateCage {
     user: number,
     code: string,
     name: string,
+    observations: string,
     active: boolean
 }
 

@@ -1,0 +1,81 @@
+<div class="col-12">
+    <p-tabMenu styleClass="mt-6" [model]="items"></p-tabMenu>  
+    @if (actionSelect == 0) {
+        <div class="col-12 p-fluid">
+            <form [formGroup]="updateCageForm" class="p-formgrid field grid">
+                <div class="md:col-6">
+                    <input type="text" pInputText formControlName="code">
+                </div>
+                <div class="md:col-6">
+                    <input type="text" pInputText formControlName="name">
+                </div>
+                <div class="md:col-12">
+                    <input type="text" pInputText formControlName="observations">
+                </div>
+                <div class="field-checkbox">
+                <p-inputSwitch formControlName="active" id="active"></p-inputSwitch>
+                <label for="active">Activo</label>
+                </div>
+            </form>
+        </div>
+    }
+    @else if (actionSelect == 1) {
+        <div class="col-12 p-fluid">
+            <form class="p-formgrid field grid dropdown-field" [formGroup]="asigAnimalForm">
+                <div class="md:col-6">
+                    <span class="p-float-label">
+                        <p-inputNumber
+                            inputId="inputAnimalAmount"
+                            formControlName="animal_amount"
+                            />
+                        <label for="inputAnimalAmount">Cantidad de animales</label>
+                    </span>
+                </div>
+                <div class="md:col-6">
+                    <span class="p-float-label">
+                        <p-dropdown
+                            inputId="animal"
+                            formControlName="animal"
+                            [options]="animalsList"
+                            >
+                        </p-dropdown>
+                        <label for="animal">Animal seleccionado</label>
+                    </span>
+                </div>
+            </form>
+        </div>
+    }
+    @else if (actionSelect == 2) {
+        <div class="col-12 p-fluid">
+            <form class="p-formgrid field grid dropdown-field" [formGroup]="asigConcentrateForm">
+                <div class="md:col-6">
+                    <span class="p-float-label">
+                        <p-inputNumber
+                            inputId="inputConcentrateAmount"
+                            formControlName="concentrate_amount"
+                            />
+                        <label for="inputConcentrateAmount">Cantidad de concentrado</label>
+                    </span>
+                </div>
+                <div class="md:col-6">
+                    <span class="p-float-label">
+                        <p-dropdown
+                            inputId="concentrate"
+                            formControlName="concentrate"
+                            [options]="concentrateList"
+                            >
+                        </p-dropdown>
+                        <label for="concentrate">Animal seleccionado</label>
+                    </span>
+                </div>
+            </form>
+        </div>
+    }
+    @else {
+        <h1>Algo salio mal</h1>
+    }
+    <div class="flex flex-wrap gap-2 layout-footer">
+        <button type="submit" class="p-button-info p-button-text" (click)="close.emit()" pButton>Regresar</button>
+        <button pButton type="submit" class="p-button-success submit-form-login" (click)="saveUpdates()" label="Guardar"></button>
+    </div>
+</div>
