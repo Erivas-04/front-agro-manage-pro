@@ -58,7 +58,7 @@ export class AppTopBarComponent implements OnInit{
                 }
             },
             error: (error) => {
-                this.router.navigate(['auth/login']);
+                this.router.navigate(['/login']);
             }
         })
 
@@ -66,7 +66,7 @@ export class AppTopBarComponent implements OnInit{
         this.colorScheme = "dark";
         this.color = "dark"
         this.options = [
-            { label: 'Salir', icon: 'pi pi-fw pi-sign-out', routerLink: ['/auth/login'], command: () =>{
+            { label: 'Salir', icon: 'pi pi-fw pi-sign-out', routerLink: ['/login'], command: () =>{
                 localStorage.setItem("token", null);
                 localStorage.setItem("asig", null);
             } },

@@ -10,12 +10,14 @@ import { authGuard } from './custom/auth.guard';
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: 'modulos', loadChildren: () => import('./demo/components/modules/modules.module').then(m => m.ModulesModule), canActivate:[authGuard]}
+                    { path: 'modulos', loadChildren: () => import('./demo/components/modules/modules.module').then(m => m.ModulesModule), canActivate:[authGuard]},
                 ]
             },
-            { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
+            { path: 'ingresar', loadChildren: () => import('./demo/components/create-company/create-company.module').then(m => m.CreateCompanyModule), canActivate:[authGuard]},
+            { path: 'login', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },
+
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],
     exports: [RouterModule]
