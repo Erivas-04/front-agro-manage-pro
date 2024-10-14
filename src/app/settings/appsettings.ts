@@ -4,5 +4,7 @@ export const appsettings = {
     userUrl: "http://localhost:8080/user",
     asignedUrl: "http://localhost:8080/asigned",
     cageUrl: "http://localhost:8080/cage",
-    concentrateUrl: "http://localhost:8080/concentrate"
+    concentrateUrl: "http://localhost:8080/concentrate",
+    animalMovementUrl: "http://localhost:8080/report/cage",
+    animalUrl: "http://localhost:8080/animal"
 }

@@ -24,12 +24,12 @@ export class AppMenuComponent implements OnInit {
                         {
                             label: 'Modulos',
                             items: [
-                                { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/modulos']},
+                                { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/inicio']},
 
                                 { label: 'Movimientos', icon: 'pi pi-fw pi-calendar-plus' ,items: [
-                                    { label: 'Dar de baja', icon: 'pi pi-fw pi-list'},
-                                    { label: 'Traslados', icon: 'pi pi-fw pi-truck'},
-                                    { label: 'Registros', icon: 'pi pi-fw pi-book', routerLink: ['/movimientos/movimientos']},
+                                    { label: 'Dar de baja', icon: 'pi pi-fw pi-list', routerLink: ['/movimientos/registrar']},
+                                    { label: 'Traslados', icon: 'pi pi-fw pi-truck', routerLink: ['/movimientos/traslados']},
+                                    { label: 'Registros', icon: 'pi pi-fw pi-book', routerLink: ['/movimientos/movimientoslista']},
                                     ]
                                 },
                             ]
@@ -41,7 +41,7 @@ export class AppMenuComponent implements OnInit {
                         {
                             label: 'Modulos',
                             items: [
-                                { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/modulos']},
+                                { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/inicio']},
             
                                 { label: 'Crianza', icon: 'pi pi-fw pi-bookmark', items: 
                                     [{ label: 'Corrales', icon: 'pi pi-fw pi-box', routerLink: ['/crianza/corrales']},
@@ -50,9 +50,9 @@ export class AppMenuComponent implements OnInit {
                                 },
             
                                 { label: 'Movimientos', icon: 'pi pi-fw pi-calendar-plus' ,items: [
-                                    { label: 'Dar de baja', icon: 'pi pi-fw pi-list'},
-                                    { label: 'Traslados', icon: 'pi pi-fw pi-truck'},
-                                    { label: 'Registros', icon: 'pi pi-fw pi-book', routerLink: ['/movimientos/movimientos']},
+                                    { label: 'Acciones', icon: 'pi pi-fw pi-list', routerLink: ['/movimientos/registrar']},
+                                    { label: 'Traslados', icon: 'pi pi-fw pi-truck', routerLink: ['/movimientos/traslados']},
+                                    { label: 'Registros', icon: 'pi pi-fw pi-book', routerLink: ['/movimientos/movimientoslista']},
                                     ]
                                 },
             

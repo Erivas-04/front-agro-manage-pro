@@ -74,3 +74,9 @@ export interface ConcentrateDTO {
     observations: string,
     hability: boolean
 }
+
+
+export interface UnsubscribeAnimalDTO {
+    weight: number,
+    age: number
+}

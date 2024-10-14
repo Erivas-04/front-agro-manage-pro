@@ -1,0 +1,33 @@
+<div class="col-12">
+    <p-tabMenu styleClass="mt-6" [model]="items"></p-tabMenu> 
+    @if (actionSelect == 0) {
+        <div>
+            <h1>Resitrar uso de concentrado</h1>
+        </div>
+    }
+    @else if (actionSelect == 1) {
+            <form [formGroup]="animalMovementForm" class="p-fluid p-formgrid grid field">
+                <div class="field md:col-4">
+                    <label htmlFor="type">Tipo de movimiento</label>
+                    <p-dropdown
+                        id="type"
+                        [options]="typeOfAnimalRegister"
+                        formControlName="type">
+                    </p-dropdown>
+                </div>
+                <div class="field md:col-4">
+                    <label htmlFor="weight">Peso del animal</label>
+                    <p-inputNumber [minFractionDigits]="2" mode="decimal" id="weight" formControlName="weight" type="text"></p-inputNumber>
+                </div>
+                <div class="field md:col-4 flex-auto">
+                    <label htmlFor="age">Semanas</label>
+                    <p-inputNumber [min]="0" id="age" formControlName="age" type="number" [showButtons]="true" />
+                </div>
+            </form>
+    }
+
+    <div class="flex flex-wrap gap-2 layout-footer">
+        <button type="submit" class="p-button-info p-button-text" (click)="close.emit()" pButton>Regresar</button>
+        <button pButton type="submit" class="p-button-success submit-form-login" (click)="registerMovement()" label="Guardar"></button>
+    </div>
+</div>

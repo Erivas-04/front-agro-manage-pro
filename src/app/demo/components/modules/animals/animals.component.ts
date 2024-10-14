@@ -44,7 +44,14 @@ export class AnimalsComponent implements OnInit{
   }
 
   closeDialog(data?: Message): void {
-    this.messageService.add({key: 'update', severity: 'success', summary: 'Animal actualizado', detail: data.message})
+    if (data != null){
+      if( this.display) {
+        this.messageService.add({key: 'create', severity: 'success', summary: 'Animal creado', detail: data.message})
+      }
+      else {
+        this.messageService.add({key: 'update', severity: 'success', summary: 'Animal actualizado', detail: data.message})
+      }
+    }
     this.display = false;
     this.displayU = false;
     this.animalSelect = null;

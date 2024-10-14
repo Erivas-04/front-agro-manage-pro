@@ -3,13 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AnimalDTO } from 'src/app/interfaces/Request';
 import { Animal, Message } from 'src/app/interfaces/Response';
+import { appsettings } from 'src/app/settings/appsettings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnimalService {
   public http = inject(HttpClient);
-  public base = "http://localhost:8080/animal"
+  public base = appsettings.animalUrl;
 
   constructor() { }
 

@@ -71,3 +71,14 @@ export interface Concentrate {
     hability: boolean,
     observations: string
 }
+
+export interface CageAnimalMovementView {
+    user_username: string,
+    cage_code: string,
+    cage_name: string,
+    animal_type: string,
+    weigth: number,
+    age: number,
+    movement_option: string,
+    time: string
+}

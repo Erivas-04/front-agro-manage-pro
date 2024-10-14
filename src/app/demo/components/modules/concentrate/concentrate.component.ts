@@ -37,7 +37,7 @@ export class ConcentrateComponent implements OnInit{
       },
       error: (error) => {
         console.error(error);
-        this.router.navigate(['auth/login']);
+        this.router.navigate(['/login']);
       }
     })
   }

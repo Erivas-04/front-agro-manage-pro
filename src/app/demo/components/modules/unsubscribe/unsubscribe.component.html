@@ -1,0 +1,37 @@
+<div class="grid">
+    <div class="col-12 md:col-12">
+        <div class="card">
+            <div class="col-12 md:col-12">
+                <h2>Registrar salidas de animales</h2>
+            </div>
+            <p-table [value]="cagesList" responsiveLayout="scroll" scrollDirection="both" [scrollable]="false" scrollHeight="400px" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="code">Codigo <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Nombre</th>
+                        <th >Animal</th>
+                        <th># animales</th>
+                        <th>Concentrado</th>
+                        <th># concentrado</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-cage>
+                    <tr (click)="unsubscribeCage(cage)">
+                        <td style="width: 10%;">{{cage.code}}</td>
+                        <td style="width: 26%;">{{cage.name}}</td>
+                        <td style="width: 16%;">{{cage.animalAsigned.animalName}}</td>
+                        <td style="width: 10%;">{{cage.animalAsigned.animalAmount}}</td>
+                        <td style="width: 16%;">{{cage.concentrateAsigned.concentrateName}}</td>
+                        <td style="width: 10%;">{{cage.concentrateAsigned.concentrateAmount | number:'1.2-2'}}</td>
+                    </tr>
+                    <p-dialog header="Registro de uso" [(visible)]="unsubscribe" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}">
+                        @if (unsubscribe) {
+                            <app-unsubscribe-register (close)="closeDialog()" (eventInCage)="setMessageEvent($event)" [cageSelect]="cageSelect"/>
+                        }
+                    </p-dialog>
+                </ng-template>
+            </p-table>
+            <p-toast key="modify"></p-toast>
+        </div>
+    </div>
+</div>

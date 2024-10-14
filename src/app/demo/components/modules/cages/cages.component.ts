@@ -53,7 +53,7 @@ export class CagesComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.router.navigate(['auth/login'])
+        this.router.navigate(['/login'])
       }
     })
   }

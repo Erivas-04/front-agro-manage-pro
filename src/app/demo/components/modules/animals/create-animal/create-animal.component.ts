@@ -22,7 +22,7 @@ export class CreateAnimalComponent implements OnInit{
     this.createAnimalForm = this.formBuilder.group({
       animal_name: ['', Validators.required],
       observations: [''],
-      hability: false
+      hability: [false]
     });
   }
 
@@ -51,7 +51,7 @@ export class CreateAnimalComponent implements OnInit{
           observations: [''],
           hability: false
         });
-        this.close.emit();
+        this.close.emit(data);
       },
       error: (error) => {
         console.error(error);

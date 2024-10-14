@@ -10,7 +10,7 @@ import { authGuard } from './custom/auth.guard';
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: 'inicio', loadChildren: () => import('./demo/components/modules/modules.module').then(m => m.ModulesModule), canActivate:[authGuard]},
+                    { path: 'inicio', loadChildren: () => import('./demo/components/modules/home/home.module').then(m => m.HomeModule), canActivate:[authGuard]},
                     { path: 'crianza', loadChildren: () => import('./demo/components/topModules/breeding/breeding.module').then(m=>m.BreedingModule), canActivate:[authGuard]},
                     { path: 'empresa', loadChildren: ()=> import('./demo/components/topModules/company-options/company-options.module').then(m=> m.CompanyOptionsModule), canActivate:[authGuard]},
                     { path: 'movimientos', loadChildren: () => import('./demo/components/topModules/registers/registers.module').then(m=>m.RegistersModule), canActivate:[authGuard]},

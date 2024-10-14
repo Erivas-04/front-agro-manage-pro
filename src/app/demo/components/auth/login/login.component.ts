@@ -69,7 +69,7 @@ export class LoginComponent{
                                 alert("Este usuario no esta habilitado")
                                 return
                             }
-                            this.router.navigate(["modulos"]);
+                            this.router.navigate(["inicio"]);
                         }
                     })
 
