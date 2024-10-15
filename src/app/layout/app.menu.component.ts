@@ -28,7 +28,6 @@ export class AppMenuComponent implements OnInit {
 
                                 { label: 'Movimientos', icon: 'pi pi-fw pi-calendar-plus' ,items: [
                                     { label: 'Dar de baja', icon: 'pi pi-fw pi-list', routerLink: ['/movimientos/registrar']},
-                                    { label: 'Registros', icon: 'pi pi-fw pi-book', routerLink: ['/movimientos/movimientoslista']},
                                     ]
                                 },
                             ]
