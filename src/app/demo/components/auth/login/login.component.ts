@@ -24,7 +24,8 @@ export class LoginComponent{
     private userApiService = inject(UserService);
     private router = inject(Router); 
     private _formBuilder = inject(FormBuilder);
-
+    
+    public displayDialog = false;
     public seePassword = false;
 
     inputValue: string = '';
@@ -66,7 +67,7 @@ export class LoginComponent{
                     .subscribe({
                         next: user=>{ 
                             if(!user.hability){
-                                alert("Este usuario no esta habilitado")
+                                this.displayDialog = true;
                                 return
                             }
                             this.router.navigate(["inicio"]);
@@ -74,13 +75,13 @@ export class LoginComponent{
                     })
 
                 }else{
-                    alert("Credenciales Incorrectas");
+                    this.displayDialog = true;
                     this.formLogin.markAllAsTouched;
 
                 }
             },
             error:(error) => {
-                alert("Credenciales Incorrectas");
+                this.displayDialog = true
                 // colcar un alert pop para las credenciales incorrectas
             }
         })

@@ -79,7 +79,6 @@ export class ModifyCageComponent implements OnInit{
             this.animalsList.push({ label: animal.animal_name, value: animal.id})
           }
         });
-        console.log(this.animalsList)
       }
     });
 

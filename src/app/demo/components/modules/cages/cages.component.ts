@@ -40,8 +40,6 @@ export class CagesComponent implements OnInit {
         })
       }
     });
-
-    console.log(this.animals)
   }
 
   getData(asig): void {
@@ -67,7 +65,6 @@ export class CagesComponent implements OnInit {
       this.messageService.add({ key: 'create', severity: 'success', summary: 'Corral creado', detail: 'Corral creado correctamente'})
     }
     this.cageSelect = cage;
-    console.log(this.cageSelect);
     this.display = false;
     this.modifi = true;
   }

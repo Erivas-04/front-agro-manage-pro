@@ -26,17 +26,12 @@ export class UnsubscribeComponent implements OnInit{
   }
 
   getData(): void {
-    this.cagesList = [];
     const asig = localStorage.getItem("asig")
 
     this.cageService.get(parseInt(asig))
     .subscribe({
       next: data => {
-        data.forEach((cage, index) => {
-          if(cage.active){
-            this.cagesList.push(cage);
-          }
-        })
+        this.cagesList = data;
       },
       error: error => {
         console.error(error);
@@ -46,12 +41,20 @@ export class UnsubscribeComponent implements OnInit{
   }
 
   unsubscribeCage(cage: Cage): void {
+    if (cage.animalAsigned.animalId == 0 || !cage.active || cage.concentrateAsigned.concentrateId == 0){
+      this.messageService.add({ key: 'error', severity: 'error', summary: "Movimiento Prohibido", detail: "Este corral no tiene todas sus caracteristicas para realizar movimientos"})
+      return;
+    }
     this.cageSelect = cage;
     this.unsubscribe = true;
   }
 
   setMessageEvent(message: Message): void {
     this.messageService.add({ key: "modify", severity: "success", summary: "Movimiento registrado", detail: message.message})
+  }
+
+  invalidMovementInCage(message: Message): void {
+    this.messageService.add({ key: 'invalid', severity: 'warn', summary: 'Movimiento Invalido', detail: message.message})
   }
 
   closeDialog(): void {

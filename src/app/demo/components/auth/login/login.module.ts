@@ -10,6 +10,8 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { AppComponent } from 'src/app/app.component';
 import { LoginService } from 'src/app/service/api/login-api.service';
+import { DialogModule } from 'primeng/dialog';
+import { ErrorComponent } from '../error/error.component';
 
 @NgModule({
     imports: [
@@ -21,9 +23,10 @@ import { LoginService } from 'src/app/service/api/login-api.service';
         FormsModule,
         PasswordModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        DialogModule
     ],
-    declarations: [LoginComponent],
+    declarations: [LoginComponent, ErrorComponent],
     providers: [LoginService]
 })
 export class LoginModule { }

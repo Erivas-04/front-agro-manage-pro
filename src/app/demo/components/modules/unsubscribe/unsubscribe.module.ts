@@ -31,7 +31,8 @@ import { ToastModule } from 'primeng/toast';
         InputNumberModule,
         InputTextModule,
         DropdownModule,
-        ToastModule
+        ToastModule,
+        MenuModule
     ],
     declarations: [UnsubscribeComponent, UnsubscribeRegisterComponent]
 })

@@ -57,7 +57,6 @@ export class CreateUserComponent implements OnInit{
       changePassword: this.createForm.value.changepassword,
       changePasswordNextSession: this.createForm.value.changePasswordNextSession
     }
-    console.log(body)
 
     this.asignedApiService.post(body)
     .subscribe({

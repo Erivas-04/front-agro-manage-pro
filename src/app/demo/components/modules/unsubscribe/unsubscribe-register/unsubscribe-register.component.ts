@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { UnsubscribeAnimalDTO } from 'src/app/interfaces/Request';
-import { Cage } from 'src/app/interfaces/Response';
+import { Cage, Message } from 'src/app/interfaces/Response';
 import { AnimalMovementService } from 'src/app/service/api/animal-movement.service';
 import { AnimalfoodMovementApiService } from 'src/app/service/api/animalfood-movement-api.service';
 
@@ -13,6 +13,7 @@ import { AnimalfoodMovementApiService } from 'src/app/service/api/animalfood-mov
 export class UnsubscribeRegisterComponent implements OnInit{
   @Output() close = new EventEmitter();
   @Output() eventInCage = new EventEmitter();
+  @Output() invalidMovement = new EventEmitter();
   @Input({required: true}) cageSelect: Cage;
   // injecciones
   private formBuilder = inject(FormBuilder);
@@ -79,6 +80,15 @@ export class UnsubscribeRegisterComponent implements OnInit{
       const amount = this.AnimalFoodCageMovementForm.value.amount;
 
       if (action == 0) {
+
+        if (amount > this.cageSelect.concentrateAsigned.concentrateAmount) {
+          let message: Message = {
+            message: "El concentrado usado es mayor al concentrado disponible"
+          };
+          this.invalidMovement.emit(message);
+          return
+        }
+
         this.animalFoodMovementService.removeAnimalFoodPOST(parseInt(asig), this.cageSelect.id, amount)
         .subscribe({
           next: data => {
@@ -107,6 +117,15 @@ export class UnsubscribeRegisterComponent implements OnInit{
       
       const action = this.typeofAnimalRegisterSelected;
       if (action > 0) {
+
+        if (this.cageSelect.animalAsigned.animalAmount == 0) {
+          let message: Message = {
+            message: 'El corral no tiene animales'
+          };
+          this.invalidMovement.emit(message);
+          return
+        }
+
         const body: UnsubscribeAnimalDTO = {
           weight: this.deleteAnimalCageMovementForm.value.weight,
           age: this.deleteAnimalCageMovementForm.value.age

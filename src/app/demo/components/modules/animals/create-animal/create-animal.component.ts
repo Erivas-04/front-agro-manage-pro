@@ -41,8 +41,6 @@ export class CreateAnimalComponent implements OnInit{
       hability: this.createAnimalForm.value.hability
     };
 
-    console.log(body)
-
     this.animalService.post(asig, body)
     .subscribe({
       next: (data) => {

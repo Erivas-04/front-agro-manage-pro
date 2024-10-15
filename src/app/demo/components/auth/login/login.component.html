@@ -52,4 +52,7 @@
                 <img src="assets/demo/images/login/logoumg.png" alt="Logo" height="550" class="mb-3">
         </div>
     </div>
+    <p-dialog [(visible)]="displayDialog" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}">
+        <app-error/>
+    </p-dialog>
 </div>
