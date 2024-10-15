@@ -13,7 +13,9 @@ export class MovementComponent implements OnInit{
   private router = inject(Router);
 
   // variables globales
-  public animalsMovements: MovementCageView[] = [];
+  public movements: MovementCageView[] = [];
+  public showDialog: boolean = false;
+  public detail: MovementCageView = null;
 
 
   ngOnInit(): void {
@@ -25,12 +27,18 @@ export class MovementComponent implements OnInit{
     this.animalMovementService.get(parseInt(asig))
     .subscribe({
       next: data => {
-        this.animalsMovements = data;
+        this.movements = data;
       },
       error: error => {
         console.error(error);
         this.router.navigate(["/login"])
       }
-    })
+    });
   }
+
+  showDetail(movementCageView: MovementCageView): void {
+    this.detail = movementCageView;
+    this.showDialog = true;
+  }
+
 }

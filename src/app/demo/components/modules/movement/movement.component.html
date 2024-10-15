@@ -5,7 +5,7 @@
                 <h1>Filtros de busqueda</h1>
             </div>
             <div>
-                <p-table [value]="animalsMovements" responsiveLayout="scroll" scrollDirection="both" [scrollable]="false" scrollHeight="400px" [paginator]="true" [rows]="20">
+                <p-table [value]="movements" responsiveLayout="scroll" scrollDirection="both" [scrollable]="false" scrollHeight="400px" [paginator]="true" [rows]="20">
                     <ng-template pTemplate="header">
                         <tr>
                             <th pSortableColumn="cage_code">Codigo de corral <p-sortIcon field="cage_code"></p-sortIcon></th>
@@ -17,7 +17,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-movement>
-                        <tr>
+                        <tr (click)="showDetail(movement)">
                             <td style="width: 10%;">{{movement.cage_code}}</td>
                             <td style="width: 13%;">{{movement.cage_name}}</td>
                             <td style="width: 16%;">{{movement.time}}</td>
@@ -28,6 +28,11 @@
                     </ng-template>
                 </p-table>
             </div>
+            <p-dialog header="Registro de uso" [(visible)]="showDialog" [modal]="true" showEffect="fade" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}">
+                @if (showDialog) {
+                    <app-dialog-movement (close)="showDialog=false" [detail]="detail"/>
+                }
+            </p-dialog>
         </div>
     </div>
 </div>

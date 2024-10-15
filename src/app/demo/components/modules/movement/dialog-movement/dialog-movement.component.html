@@ -1,0 +1,87 @@
+<div class="col-12 grid">
+    @if (detail.animalOrAnimalFood == "ANIMAL") {
+        @if (detail.movement_type == "Entrada") {
+            <div class="md:col-4 field">
+                <label htmlFor="user_name">Nombre del usuairo</label>
+                <input type="text" [disabled]="true" readonly pInputText id="user_name" value="{{detail.user_name}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="cage_code">Codigo de corral</label>
+                <input type="text" [disabled]="true" readonly pInputText id="cage_code" value="{{detail.cage_code}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="cage_name">Nombre del corral</label>
+                <input type="text" [disabled]="true" readonly pInputText id="cage_name" value="{{detail.cage_name}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="movement_type">Tipo de movimiento</label>
+                <input type="text" [disabled]="true"  readonly pInputText id="movement_type" value="{{detail.movement_type}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="amount">Cantidad ingresada</label>
+                <input type="text" [disabled]="true" readonly pInputText id="amount" value="{{detail.amount}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="time">Fecha realizado</label>
+                <input type="text" [disabled]="true" readonly pInputText id="time" value="{{detail.time}}">
+            </div>
+            
+        }
+        @else {
+            <div class="md:col-4 field">
+                <label htmlFor="user_name">Nombre del usuairo</label>
+                <input type="text" [disabled]="true" readonly pInputText id="user_name" value="{{detail.user_name}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="cage_code">Codigo de corral</label>
+                <input type="text" [disabled]="true" readonly pInputText id="cage_code" value="{{detail.cage_code}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="cage_name">Nombre del corral</label>
+                <input type="text" [disabled]="true" readonly pInputText id="cage_name" value="{{detail.cage_name}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="movement_type">Tipo de movimiento</label>
+                <input type="text" [disabled]="true"  readonly pInputText id="movement_type" value="{{detail.movement_type}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="weigth">Peso del animal</label>
+                <input type="text" [disabled]="true" readonly pInputText id="weigth" value="{{detail.weigth}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="age">Edad del animal</label>
+                <input type="text" [disabled]="true" readonly pInputText id="age" value="{{detail.age}}">
+            </div>
+            <div class="md:col-4 field">
+                <label htmlFor="time">Fecha realizado</label>
+                <input type="text" [disabled]="true" readonly pInputText id="time" value="{{detail.time}}">
+            </div>
+        }
+    }
+    @else if (detail.animalOrAnimalFood == "CONCENTRADO") {
+        <div class="md:col-4 field">
+            <label htmlFor="user_name">Nombre del usuairo</label>
+            <input type="text" [disabled]="true" readonly pInputText id="user_name" value="{{detail.user_name}}">
+        </div>
+        <div class="md:col-4 field">
+            <label htmlFor="cage_code">Codigo de corral</label>
+            <input type="text" [disabled]="true" readonly pInputText id="cage_code" value="{{detail.cage_code}}">
+        </div>
+        <div class="md:col-4 field">
+            <label htmlFor="cage_name">Nombre del corral</label>
+            <input type="text" [disabled]="true" readonly pInputText id="cage_name" value="{{detail.cage_name}}">
+        </div>
+        <div class="md:col-4 field">
+            <label htmlFor="movement_type">Tipo de movimiento</label>
+            <input type="text" [disabled]="true"  readonly pInputText id="movement_type" value="{{detail.movement_type}}">
+        </div>
+        <div class="md:col-4 field">
+            <label htmlFor="amount">Cantidad registrado</label>
+            <input type="text" [disabled]="true"  readonly pInputText id="amount" value="{{detail.amount}}">
+        </div>
+        <div class="md:col-4 field">
+            <label htmlFor="time">Fecha realizado</label>
+            <input type="text" [disabled]="true" readonly pInputText id="time" value="{{detail.time}}">
+        </div>
+    }
+</div>
