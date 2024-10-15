@@ -1,9 +1,19 @@
 <div class="col-12">
     <p-tabMenu styleClass="mt-6" [model]="items"></p-tabMenu> 
     @if (actionSelect == 0) {
-        <div>
-            <h1>Resitrar uso de concentrado</h1>
+        <div class="field md:col-4">
+            <p-dropdown
+                id="type"
+                [options]="typeOfAnimalFoodRegister"
+                [(ngModel)]="typeOfAnimalFoodRegisterSelected">
+            </p-dropdown>
         </div>
+        <form [formGroup]="AnimalFoodCageMovementForm">
+            <div class="field md:col-4">
+                <label htmlFor="amount">Cantidad de concentrado</label>
+                <p-inputNumber [minFractionDigits]="2" mode="decimal" id="amount" formControlName="amount" type="number"></p-inputNumber>
+            </div>
+        </form>
     }
     @else if (actionSelect == 1) {
         <div class="field md:col-4">
@@ -15,14 +25,14 @@
             </p-dropdown>
         </div>
             @if (typeofAnimalRegisterSelected == 0) {
-                <form [formGroup]="addCageMovementForm">
+                <form [formGroup]="addAnimalCageMovementForm">
                     <div class="field md:col-3">
                         <label htmlFor="amount">Cantidad de animales</label>
                         <p-inputNumber id="amount" formControlName="animals_amount" type="text"></p-inputNumber>
                     </div>
                 </form>
             } @else if(typeofAnimalRegisterSelected > 0) {
-                <form [formGroup]="delteCageMovementForm" class="p-fluid p-formgrid grid field">
+                <form [formGroup]="deleteAnimalCageMovementForm" class="p-fluid p-formgrid grid field">
                 
                     <div class="field md:col-3">
                         <label htmlFor="weight">Peso del animal</label>

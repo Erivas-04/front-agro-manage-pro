@@ -4,6 +4,7 @@ import { SelectItem } from 'primeng/api';
 import { UnsubscribeAnimalDTO } from 'src/app/interfaces/Request';
 import { Cage } from 'src/app/interfaces/Response';
 import { AnimalMovementService } from 'src/app/service/api/animal-movement.service';
+import { AnimalfoodMovementApiService } from 'src/app/service/api/animalfood-movement-api.service';
 
 @Component({
   selector: 'app-unsubscribe-register',
@@ -16,13 +17,16 @@ export class UnsubscribeRegisterComponent implements OnInit{
   // injecciones
   private formBuilder = inject(FormBuilder);
   private animalMovementService = inject(AnimalMovementService);
+  private animalFoodMovementService = inject(AnimalfoodMovementApiService);
   
   // variables globales
   public actionSelect: number = 0;
 
   //formularios de registros
-  public delteCageMovementForm: FormGroup;
-  public addCageMovementForm: FormGroup;
+  public deleteAnimalCageMovementForm: FormGroup;
+  public addAnimalCageMovementForm: FormGroup;
+
+  public AnimalFoodCageMovementForm: FormGroup;
 
   // barra de seleccion de accion
   public items = [
@@ -41,31 +45,71 @@ export class UnsubscribeRegisterComponent implements OnInit{
   ]
   public typeofAnimalRegisterSelected: any;
 
+  public typeOfAnimalFoodRegister: SelectItem[] = [
+    { label: 'Uso diario', value: 0 },
+    { label: 'Ingreso', value: 1 }
+  ]
+  public typeOfAnimalFoodRegisterSelected: any;
+
   ngOnInit(): void {
-    this.delteCageMovementForm = this.formBuilder.group({
+    // formularios de animales
+    this.deleteAnimalCageMovementForm = this.formBuilder.group({
       weight: [0],
       age: [0],
       type: [0]
     });
 
-    this.addCageMovementForm = this.formBuilder.group({
+    this.addAnimalCageMovementForm = this.formBuilder.group({
       animals_amount: [0],
+    });
+
+    // formularios de concentrados
+    this.AnimalFoodCageMovementForm = this.formBuilder.group({
+      amount: [0]
     })
   }
 
   registerMovement(): void {
-    console.log(this.typeofAnimalRegisterSelected)
+    const asig = localStorage.getItem("asig");
+
     if(this.actionSelect == 0) {
-      
-    } else if(this.actionSelect == 1) {
-      
+
       const asig = localStorage.getItem("asig");
+      const action = this.typeOfAnimalFoodRegisterSelected;
+      const amount = this.AnimalFoodCageMovementForm.value.amount;
+
+      if (action == 0) {
+        this.animalFoodMovementService.removeAnimalFoodPOST(parseInt(asig), this.cageSelect.id, amount)
+        .subscribe({
+          next: data => {
+            this.eventInCage.emit(data);
+          }, 
+          error: error => {
+            console.error(error);
+          }
+        });
+      }
+      else if (action == 1) {
+        this.animalFoodMovementService.addAnimalFoodPOST(parseInt(asig), this.cageSelect.id, amount)
+        .subscribe({
+          next: data => {
+            this.eventInCage.emit(data);
+          }, 
+          error: error => {
+            console.error(error);
+          }
+        })
+      }
       
-      const action = this.delteCageMovementForm.value.type;
+    } 
+    else if(this.actionSelect == 1) {
+      
+      
+      const action = this.typeofAnimalRegisterSelected;
       if (action > 0) {
         const body: UnsubscribeAnimalDTO = {
-          weight: this.delteCageMovementForm.value.weight,
-          age: this.delteCageMovementForm.value.age
+          weight: this.deleteAnimalCageMovementForm.value.weight,
+          age: this.deleteAnimalCageMovementForm.value.age
         }
         this.animalMovementService.unsubscribeAnimalPOST(body, parseInt(asig), this.cageSelect.id, action)
         .subscribe({
@@ -78,7 +122,7 @@ export class UnsubscribeRegisterComponent implements OnInit{
         });
       }
       else {
-        const amount = this.addCageMovementForm.value.animals_amount;
+        const amount = this.addAnimalCageMovementForm.value.animals_amount;
 
         this.animalMovementService.subscribeAnimalPOST(parseInt(asig), this.cageSelect.id, amount)
         .subscribe({
