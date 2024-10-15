@@ -6,24 +6,35 @@
         </div>
     }
     @else if (actionSelect == 1) {
-            <form [formGroup]="animalMovementForm" class="p-fluid p-formgrid grid field">
-                <div class="field md:col-4">
-                    <label htmlFor="type">Tipo de movimiento</label>
-                    <p-dropdown
-                        id="type"
-                        [options]="typeOfAnimalRegister"
-                        formControlName="type">
-                    </p-dropdown>
-                </div>
-                <div class="field md:col-4">
-                    <label htmlFor="weight">Peso del animal</label>
-                    <p-inputNumber [minFractionDigits]="2" mode="decimal" id="weight" formControlName="weight" type="text"></p-inputNumber>
-                </div>
-                <div class="field md:col-4 flex-auto">
-                    <label htmlFor="age">Semanas</label>
-                    <p-inputNumber [min]="0" id="age" formControlName="age" type="number" [showButtons]="true" />
-                </div>
-            </form>
+        <div class="field md:col-4">
+            <label htmlFor="type">Tipo de movimiento</label>
+            <p-dropdown
+                id="type"
+                [options]="typeOfAnimalRegister"
+                [(ngModel)]="typeofAnimalRegisterSelected">
+            </p-dropdown>
+        </div>
+            @if (typeofAnimalRegisterSelected == 0) {
+                <form [formGroup]="addCageMovementForm">
+                    <div class="field md:col-3">
+                        <label htmlFor="amount">Cantidad de animales</label>
+                        <p-inputNumber id="amount" formControlName="animals_amount" type="text"></p-inputNumber>
+                    </div>
+                </form>
+            } @else if(typeofAnimalRegisterSelected > 0) {
+                <form [formGroup]="delteCageMovementForm" class="p-fluid p-formgrid grid field">
+                
+                    <div class="field md:col-3">
+                        <label htmlFor="weight">Peso del animal</label>
+                        <p-inputNumber [minFractionDigits]="2" mode="decimal" id="weight" formControlName="weight" type="text"></p-inputNumber>
+                    </div>
+                    <div class="field md:col-3">
+                        <label htmlFor="age">Semanas</label>
+                        <p-inputNumber [min]="0" id="age" formControlName="age" type="number" [showButtons]="true" />
+                    </div>
+                </form>
+            }
+            
     }
 
     <div class="flex flex-wrap gap-2 layout-footer">

@@ -72,13 +72,14 @@ export interface Concentrate {
     observations: string
 }
 
-export interface CageAnimalMovementView {
-    user_username: string,
+export interface MovementCageView {
+    user_name: string, 
     cage_code: string,
     cage_name: string,
-    animal_type: string,
-    weigth: number,
+    movement_type: string,
+    animalOrAnimalFood: string,
+    amount: number,
     age: number,
-    movement_option: string,
-    time: string
+    weigth: number,
+    time: String
 }

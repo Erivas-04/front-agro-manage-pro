@@ -21,7 +21,8 @@ export class UnsubscribeRegisterComponent implements OnInit{
   public actionSelect: number = 0;
 
   //formularios de registros
-  public animalMovementForm: FormGroup;
+  public delteCageMovementForm: FormGroup;
+  public addCageMovementForm: FormGroup;
 
   // barra de seleccion de accion
   public items = [
@@ -38,39 +39,57 @@ export class UnsubscribeRegisterComponent implements OnInit{
     {label: 'Salida', value: 1},
     {label: 'Muerte', value: 2}
   ]
+  public typeofAnimalRegisterSelected: any;
 
   ngOnInit(): void {
-    this.animalMovementForm = this.formBuilder.group({
-      weight: [0, Validators.required],
-      age: [0, Validators.required],
+    this.delteCageMovementForm = this.formBuilder.group({
+      weight: [0],
+      age: [0],
       type: [0]
     });
+
+    this.addCageMovementForm = this.formBuilder.group({
+      animals_amount: [0],
+    })
   }
 
   registerMovement(): void {
+    console.log(this.typeofAnimalRegisterSelected)
     if(this.actionSelect == 0) {
       
     } else if(this.actionSelect == 1) {
-      if (this.animalMovementForm.invalid) {
-        this.animalMovementForm.markAllAsTouched
-        return
-      }
-      console.log(this.cageSelect.id)
       
       const asig = localStorage.getItem("asig");
-      const body: UnsubscribeAnimalDTO = {
-        weight: this.animalMovementForm.value.weight,
-        age: this.animalMovementForm.value.age
-      }
-      this.animalMovementService.unsubscribeAnimalPOST(body, parseInt(asig), this.cageSelect.id, this.animalMovementForm.value.type)
-      .subscribe({
-        next: data => {
-          this.eventInCage.emit(data);
-        },
-        error: error => {
-          console.error(error);
+      
+      const action = this.delteCageMovementForm.value.type;
+      if (action > 0) {
+        const body: UnsubscribeAnimalDTO = {
+          weight: this.delteCageMovementForm.value.weight,
+          age: this.delteCageMovementForm.value.age
         }
-      });
+        this.animalMovementService.unsubscribeAnimalPOST(body, parseInt(asig), this.cageSelect.id, action)
+        .subscribe({
+          next: data => {
+            this.eventInCage.emit(data);
+          },
+          error: error => {
+            console.error(error);
+          }
+        });
+      }
+      else {
+        const amount = this.addCageMovementForm.value.animals_amount;
+
+        this.animalMovementService.subscribeAnimalPOST(parseInt(asig), this.cageSelect.id, amount)
+        .subscribe({
+          next: data => {
+            this.eventInCage.emit(data);
+          },
+          error: error => {
+            console.error(error);
+          }
+        })
+      }
     }
   }
 }

@@ -32,7 +32,7 @@ export class UsersCompanyComponent implements OnInit{
         this.usersList = data;
       },
       error: (error) => {
-        this.router.navigate(['auth/login'])
+        this.router.navigate(['/login'])
       } 
     });
   }

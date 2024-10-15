@@ -6,5 +6,6 @@ export const appsettings = {
     cageUrl: "http://localhost:8080/cage",
     concentrateUrl: "http://localhost:8080/concentrate",
     animalMovementUrl: "http://localhost:8080/report/cage",
-    animalUrl: "http://localhost:8080/animal"
+    animalUrl: "http://localhost:8080/animal",
+    ReportsUrl: 'http://localhost:8080/report/list'
 }
