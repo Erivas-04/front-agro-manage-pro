@@ -53,6 +53,9 @@ export class UnsubscribeRegisterComponent implements OnInit{
   public typeOfAnimalFoodRegisterSelected: any;
 
   ngOnInit(): void {
+    this.typeofAnimalRegisterSelected = 0;
+    this.typeOfAnimalFoodRegisterSelected = 0;
+
     // formularios de animales
     this.deleteAnimalCageMovementForm = this.formBuilder.group({
       weight: [0],

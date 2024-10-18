@@ -2,6 +2,7 @@
     <p-tabMenu styleClass="mt-6" [model]="items"></p-tabMenu> 
     @if (actionSelect == 0) {
         <div class="field md:col-4">
+            <label htmlFor="type">Tipo de movimiento</label>
             <p-dropdown
                 id="type"
                 [options]="typeOfAnimalFoodRegister"
@@ -40,7 +41,7 @@
                     </div>
                     <div class="field md:col-3">
                         <label htmlFor="age">Semanas</label>
-                        <p-inputNumber [min]="0" id="age" formControlName="age" type="number" [showButtons]="true" />
+                        <p-inputNumber [min]="0" id="age" formControlName="age" type="number" />
                     </div>
                 </form>
             }
