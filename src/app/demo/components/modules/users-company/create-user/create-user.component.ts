@@ -46,19 +46,19 @@ export class CreateUserComponent implements OnInit{
     const id = localStorage.getItem("asig");
 
     const body: CreateUser = {
-      id_asig: Number(id),
       username: this.createForm.value.username,
       password: this.createForm.value.password,
       firstname: this.createForm.value.firstname,
-      lastname: this.createForm.value.lastname,
+      last_name: this.createForm.value.lastname,
       tel: this.createForm.value.tel,
       role: this.createForm.value.role,
-      hability: this.createForm.value.hability,
+      observations: null,
+      is_active: this.createForm.value.hability,
       changePassword: this.createForm.value.changepassword,
       changePasswordNextSession: this.createForm.value.changePasswordNextSession
     }
 
-    this.asignedApiService.post(body)
+    this.asignedApiService.post(id, body)
     .subscribe({
       next: (data) => {
         this.messageService.add({ key: 'create', severity: 'success', summary: 'Creacion de usuario', detail: data.message});

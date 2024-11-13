@@ -39,7 +39,7 @@ export class UserComponent implements OnInit{
       lastname: [this.user.lastname, Validators.required],
       usernameExtension: [username2, Validators.required],
       tel: [this.user.tel],
-      hability: [this.user.hability],
+      hability: [this.user.is_active],
       changePassword: [this.user.changePassword],
       changePasswordNextSession: [this.user.changePasswordNextSession]
     });
@@ -88,7 +88,8 @@ export class UserComponent implements OnInit{
       firstname: this.putForm.value.firstname,
       lastname: this.putForm.value.lastname,
       tel: this.putForm.value.tel,
-      hability: this.putForm.value.hability,
+      is_active: this.putForm.value.hability,
+      observations: null,
       changePassword: this.putForm.value.changePassword,
       changePasswordNextSession: this.putForm.value.changePasswordNextSession
     }

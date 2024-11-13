@@ -2,7 +2,7 @@ import { __values } from 'tslib';
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { AsigAnimal, PutCage } from 'src/app/interfaces/Request';
+import { AsigAnimal, AsigAnimalFood, PutCage } from 'src/app/interfaces/Request';
 import { Animal, Cage, Concentrate } from 'src/app/interfaces/Response';
 import { AnimalService } from 'src/app/service/api/animal.service';
 import { CageAsigsService } from 'src/app/service/api/cage-asigs.service';
@@ -65,8 +65,8 @@ export class ModifyCageComponent implements OnInit{
 
     // asig concentrate form
     this.asigConcentrateForm = this.formBuilder.group({
-      concentrate: [this.cage.concentrateAsigned.concentrateId, Validators.required],
-      concentrate_amount: [this.cage.concentrateAsigned.concentrateAmount, Validators.required]
+      animal_food: [this.cage.concentrateAsigned.concentrateId, Validators.required],
+      animal_food_amount: [this.cage.concentrateAsigned.concentrateAmount, Validators.required]
     });
 
     const asig = localStorage.getItem("asig");
@@ -121,7 +121,8 @@ export class ModifyCageComponent implements OnInit{
       });
     }
     else if(this.actionSelect == 2) {
-      this.cagesAsign.asigConcentrate(this.cage.id, this.asigConcentrateForm.value.concentrate, this.asigConcentrateForm.value.concentrate_amount)
+      const animal_food_request: AsigAnimalFood = this.asigConcentrateForm.value
+      this.cagesAsign.asigConcentrate(this.cage.id, animal_food_request)
       .subscribe({
         next: data => {
           this.modify.emit(data);

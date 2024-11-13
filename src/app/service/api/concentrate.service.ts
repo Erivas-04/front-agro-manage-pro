@@ -10,17 +10,17 @@ import { appsettings } from 'src/app/settings/appsettings';
 })
 export class ConcentrateService {
   private http = inject(HttpClient);
-  private base = appsettings.concentrateUrl;
+  private base = appsettings.animalUrl;
 
-  get(id: number): Observable<Concentrate[]> {
-    return this.http.get<Concentrate[]>(`${this.base}/all/company/${id}`);
+  get(user_id: number): Observable<Concentrate[]> {
+    return this.http.get<Concentrate[]>(`${this.base}/food/list/${user_id}`);
   }
 
-  post(id: number, body: ConcentrateDTO): Observable<Message> {
-    return this.http.post<Message>(`${this.base}/create/${id}`, body);
+  post(user_id: number, body: ConcentrateDTO): Observable<Message> {
+    return this.http.post<Message>(`${this.base}/food/create/${user_id}`, body);
   }
 
-  put(id: number, body: ConcentrateDTO): Observable<Message> {
-    return this.http.put<Message>(`${this.base}/update/${id}`, body);
+  put(animal_food_id: number, body: ConcentrateDTO): Observable<Message> {
+    return this.http.put<Message>(`${this.base}/food/update/${animal_food_id}`, body);
   }
 }

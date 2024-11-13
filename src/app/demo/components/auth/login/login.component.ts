@@ -66,7 +66,7 @@ export class LoginComponent{
                     this.userApiService.get(data.asig.toString())
                     .subscribe({
                         next: user=>{ 
-                            if(!user.hability){
+                            if(!user.is_active){
                                 this.displayDialog = true;
                                 return
                             }

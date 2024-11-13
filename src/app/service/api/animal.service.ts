@@ -14,15 +14,15 @@ export class AnimalService {
 
   constructor() { }
 
-  get(id: number): Observable<Animal[]> {
-    return this.http.get<Animal[]>(`${this.base}/${id}/asig`);
+  get(user_id: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`${this.base}/list/${user_id}`);
   }
 
-  post(id_user: number, body: AnimalDTO): Observable<Message> {
-    return this.http.post<Message>(`${this.base}/create/${id_user}`,body);
+  post(user_id: number, body: AnimalDTO): Observable<Message> {
+    return this.http.post<Message>(`${this.base}/create/${user_id}`,body);
   }
 
   put(id_animal: number, body: AnimalDTO): Observable<Message> {
-    return this.http.put<Message>(`${this.base}/${id_animal}/update`, body);
+    return this.http.put<Message>(`${this.base}/update/${id_animal}`, body);
   }
 }

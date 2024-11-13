@@ -20,7 +20,8 @@ export interface PutUser {
     firstname: string,
     lastname: string,
     tel: string,
-    hability: boolean,
+    is_active: boolean,
+    observations: string,
     changePassword: boolean,
     changePasswordNextSession: boolean
 }
@@ -30,14 +31,14 @@ export interface PutPassword {
 }
 
 export interface CreateUser {
-    id_asig: number,
     username: string, 
     password: string,
     firstname: string,
-    lastname: string,
+    last_name: string,
     role: number,
     tel: string,
-    hability: boolean,
+    is_active: boolean,
+    observations: string,
     changePassword: boolean,
     changePasswordNextSession: boolean
 }
@@ -47,7 +48,7 @@ export interface CreateCage {
     code: string,
     name: string,
     observations: string,
-    active: boolean
+    hability: boolean
 }
 
 
@@ -63,6 +64,11 @@ export interface AsigAnimal {
     animal_amount: number,
 }
 
+export interface AsigAnimalFood {
+    animal_food: number,
+    animal_food_amount: number
+}
+
 export interface AnimalDTO {
     animal_name: string,
     observations: string,
@@ -70,7 +76,7 @@ export interface AnimalDTO {
 }
 
 export interface ConcentrateDTO {
-    concentrate_name: string,
+    animal_food_name: string,
     observations: string,
     hability: boolean
 }

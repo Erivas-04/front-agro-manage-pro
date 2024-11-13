@@ -11,15 +11,15 @@ import { CreateUser } from 'src/app/interfaces/Request';
 })
 export class UsersCompanyService {
   private http = inject(HttpClient);
-  private base = appsettings.asignedUrl;
+  private base = appsettings.companyUrl;
 
   constructor() { }
 
   get(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.base}/users/${id}/company`);
+    return this.http.get<User[]>(`${this.base}/user/${id}/`);
   }
 
-  post(body: CreateUser): Observable<Message> {
-    return this.http.post<Message>(`${this.base}/create`, body);
+  post(user_id: string, body: CreateUser): Observable<Message> {
+    return this.http.post<Message>(`${this.base}/user/create/${user_id}`, body);
   }
 }

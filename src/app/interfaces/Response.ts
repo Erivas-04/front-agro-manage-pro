@@ -26,10 +26,10 @@ export interface User {
     username: string,
     firstname: string,
     lastname: string,
-    country: string,
+    observations: string,
     tel: string,
     role: string,
-    hability: boolean,
+    is_active: boolean,
     changePassword: boolean,
     changePasswordNextSession: boolean
 }
@@ -48,7 +48,6 @@ export interface ConcentrateAsigned {
 
 export interface Cage {
     id: number,
-    user: number,
     concentrateAsigned: ConcentrateAsigned,
     animalAsigned: AnimalAsigned,
     code: string,

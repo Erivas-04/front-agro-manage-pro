@@ -14,18 +14,19 @@ export class CagesService {
 
   constructor() { }
 
-  get(id: number): Observable<Cage[]> {
-    return this.http.get<Cage[]>(`${this.base}/${id}/asig`);
+  get(user_id: number): Observable<Cage[]> {
+    return this.http.get<Cage[]>(`${this.base}/list/${user_id}`);
   }
 
   getOne(id_cage: number): Observable<Cage> {
-    return this.http.get<Cage>(`${this.base}/${id_cage}/select`)
+    return this.http.get<Cage>(`${this.base}/get/${id_cage}`)
   }
 
   post(body: CreateCage): Observable<Cage> {
-    return this.http.post<Cage>(`${this.base}/create`, body);
+    return this.http.post<Cage>(`${this.base}/create/`, body);
   }
 
+  // para desarrollar
   put(body: PutCage, id: number): Observable<Message> {
     return this.http.put<Message>(`${this.base}/${id}/update`, body);
   }

@@ -48,7 +48,7 @@ export class CreateCageComponent implements OnInit{
       code: this.createCageForm.value.code,
       name: this.createCageForm.value.name,
       observations: this.createCageForm.value.observations,
-      active: this.createCageForm.value.active
+      hability: this.createCageForm.value.active
     }
 
     this.cageService.post(bodyCage)

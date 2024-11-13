@@ -15,7 +15,7 @@ export class CompanyService {
   constructor() {}
   
   get(id: string): Observable<CompanyResponse> {
-    return this.http.get<CompanyResponse>(`${this.baseUrl}/${id}/select`)
+    return this.http.get<CompanyResponse>(`${this.baseUrl}/${id}/`)
   }
 
   post(body: CompanyRequest): Observable<CompanyResponse>{

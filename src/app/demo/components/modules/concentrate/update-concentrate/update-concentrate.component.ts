@@ -21,7 +21,7 @@ export class UpdateConcentrateComponent implements OnInit{
 
   ngOnInit(): void {
     this.updateConcentrateForm = this.formBuilder.group({
-      concentrate_name: [this.concentrate.concentrate_name, Validators.required],
+      animal_food_name: [this.concentrate.concentrate_name, Validators.required],
       observations: [this.concentrate.observations],
       hability: [this.concentrate.hability, Validators.required]
     });
@@ -34,7 +34,7 @@ export class UpdateConcentrateComponent implements OnInit{
     }
 
     const body: ConcentrateDTO = {
-      concentrate_name: this.updateConcentrateForm.value.concentrate_name,
+      animal_food_name: this.updateConcentrateForm.value.concentrate_name,
       observations: this.updateConcentrateForm.value.observations,
       hability: this.updateConcentrateForm.value.hability
     };

@@ -21,10 +21,10 @@ export class UserService {
   }
 
   put(body: PutUser, id: number): Observable<Message>  {
-    return this.http.put<Message>(`${this.base}/${id}/update`, body);
+    return this.http.put<Message>(`${this.base}/${id}/update/`, body);
   }
 
   putPassword(body: PutPassword, id: number): Observable<Message> {
-    return this.http.put<Message>(`${this.base}/${id}/update/password`, body);
+    return this.http.put<Message>(`${this.base}/${id}/update/pass/`, body);
   }
 }

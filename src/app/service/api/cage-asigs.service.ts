@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AsigAnimal } from 'src/app/interfaces/Request';
+import { AsigAnimal, AsigAnimalFood } from 'src/app/interfaces/Request';
 import { Message } from 'src/app/interfaces/Response';
 import { appsettings } from 'src/app/settings/appsettings';
 
@@ -15,10 +15,11 @@ export class CageAsigsService {
   constructor() { }
 
   asigAnimal(id_cage: number, body: AsigAnimal): Observable<Message>{
-    return this.http.patch<Message>(`${this.base}/${id_cage}/animal/set`, body);
+    return this.http.put<Message>(`${this.base}/asig/${id_cage}/animal`, body);
   }
 
-  asigConcentrate(id_cage: number, id_concentrate: number, amount: number): Observable<Message> {
-    return this.http.patch<Message>(`${this.base}/${id_cage}/cage/${id_concentrate}/concentrate/asig/${amount}`, null);
+  // Modificar funcionamiento
+  asigConcentrate(id_cage: number, body: AsigAnimalFood): Observable<Message> {
+    return this.http.put<Message>(`${this.base}/asig/${id_cage}/animal/food`, body);
   }
 }

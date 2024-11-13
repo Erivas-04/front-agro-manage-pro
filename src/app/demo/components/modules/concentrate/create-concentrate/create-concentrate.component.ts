@@ -19,7 +19,7 @@ export class CreateConcentrateComponent implements OnInit{
 
   ngOnInit(): void {
     this.createConcentrateForm = this.formBuilder.group({
-      concentrate_name: ['', Validators.required],
+      animal_food_name: ['', Validators.required],
       observations: [''],
       hability: [false, Validators.required]
     });
