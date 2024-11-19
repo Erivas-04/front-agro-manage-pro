@@ -46,9 +46,9 @@ export class CreateUserComponent implements OnInit{
     const id = localStorage.getItem("asig");
 
     const body: CreateUser = {
-      username: this.createForm.value.username,
+      username: this.createForm.value.username + "@" + this.company.usernameExtension,
       password: this.createForm.value.password,
-      firstname: this.createForm.value.firstname,
+      name: this.createForm.value.firstname,
       last_name: this.createForm.value.lastname,
       tel: this.createForm.value.tel,
       role: this.createForm.value.role,
@@ -58,8 +58,6 @@ export class CreateUserComponent implements OnInit{
       changePasswordNextSession: this.createForm.value.changePasswordNextSession
     }
 
-    console.log(body)
-
     this.asignedApiService.post(id, body)
     .subscribe({
       next: (data) => {
@@ -67,8 +65,7 @@ export class CreateUserComponent implements OnInit{
         this.goBack.emit();
       },
       error: (error) =>{
-        alert("algo salio malisimo")
-        console.log(error)}
+        console.error(error.error)}
     })
   }
 }

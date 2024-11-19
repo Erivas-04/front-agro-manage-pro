@@ -33,7 +33,7 @@ export interface PutPassword {
 export interface CreateUser {
     username: string, 
     password: string,
-    firstname: string,
+    name: string,
     last_name: string,
     role: number,
     tel: string,
