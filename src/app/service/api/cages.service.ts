@@ -26,8 +26,7 @@ export class CagesService {
     return this.http.post<Cage>(`${this.base}/create/`, body);
   }
 
-  // para desarrollar
   put(body: PutCage, id: number): Observable<Message> {
-    return this.http.put<Message>(`${this.base}/${id}/update`, body);
+    return this.http.put<Message>(`${this.base}/update/${id}`, body);
   }
 }

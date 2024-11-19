@@ -34,7 +34,7 @@ export class UpdateConcentrateComponent implements OnInit{
     }
 
     const body: ConcentrateDTO = {
-      animal_food_name: this.updateConcentrateForm.value.concentrate_name,
+      animal_food_name: this.updateConcentrateForm.value.animal_food_name,
       observations: this.updateConcentrateForm.value.observations,
       hability: this.updateConcentrateForm.value.hability
     };

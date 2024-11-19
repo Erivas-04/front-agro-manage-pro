@@ -33,7 +33,7 @@
                         <td style="width: 200px;">{{user.username}}</td>
                         <td style="width: 200px;">{{user.tel}}</td>
                         <td style="align-items: center;">
-                            <ng-container *ngIf="user.hability; else elseHability">
+                            <ng-container *ngIf="user.is_active; else elseHability">
                                 <i class="pi pi-check-circle" style="padding-left: 25px; font-size: 20px;" ></i>
                             </ng-container>
                             <ng-template #elseHability>

@@ -17,14 +17,14 @@ export class UserService {
   constructor() { }
 
   get(id: string): Observable<User> {
-    return this.http.get<User>(`${this.base}/${id}/select`);
+    return this.http.get<User>(`${this.base}/${id}/get`);
   }
 
   put(body: PutUser, id: number): Observable<Message>  {
-    return this.http.put<Message>(`${this.base}/${id}/update/`, body);
+    return this.http.put<Message>(`${this.base}/${id}/update`, body);
   }
 
   putPassword(body: PutPassword, id: number): Observable<Message> {
-    return this.http.put<Message>(`${this.base}/${id}/update/pass/`, body);
+    return this.http.put<Message>(`${this.base}/${id}/update/pass`, body);
   }
 }

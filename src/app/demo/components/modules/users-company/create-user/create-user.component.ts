@@ -28,9 +28,9 @@ export class CreateUserComponent implements OnInit{
       lastname: ['', Validators.required],
       role: [0, Validators.required],
       tel: [''],
-      hability: [''],
-      changePassword: [''],
-      changePasswordNextSession: ['']
+      hability: [false],
+      changePassword: [false],
+      changePasswordNextSession: [false]
     });
 
     this.roles = [
@@ -58,14 +58,17 @@ export class CreateUserComponent implements OnInit{
       changePasswordNextSession: this.createForm.value.changePasswordNextSession
     }
 
+    console.log(body)
+
     this.asignedApiService.post(id, body)
     .subscribe({
       next: (data) => {
         this.messageService.add({ key: 'create', severity: 'success', summary: 'Creacion de usuario', detail: data.message});
         this.goBack.emit();
       },
-      error: (error) =>
+      error: (error) =>{
         alert("algo salio malisimo")
+        console.log(error)}
     })
   }
 }

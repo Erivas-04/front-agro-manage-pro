@@ -1,5 +1,5 @@
 export const appsettings = {
-    loginUrl: "http://localhost:8000/auth/login",
+    loginUrl: "http://localhost:8000/login/",
     userUrl: "http://localhost:8000/user",
     companyUrl: "http://localhost:8000/company",
     cageUrl: "http://localhost:8000/cage",

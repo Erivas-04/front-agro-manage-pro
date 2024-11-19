@@ -16,7 +16,7 @@ export class UsersCompanyService {
   constructor() { }
 
   get(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.base}/user/${id}/`);
+    return this.http.get<User[]>(`${this.base}/user/${id}`);
   }
 
   post(user_id: string, body: CreateUser): Observable<Message> {

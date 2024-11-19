@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
     this.userService.get(asig)
     .subscribe({
       next: (data) => {
-        if(data.hability){
+        if(data.is_active){
           this.user = data;
         }
       }
@@ -30,10 +30,10 @@ export class HomeComponent implements OnInit{
       username: "",
       firstname: "",
       lastname: "",
-      country: "",
       tel: "",
       role: "",
-      hability: true,
+      observations: "",
+      is_active: true,
       changePassword: true,
       changePasswordNextSession: true
     }

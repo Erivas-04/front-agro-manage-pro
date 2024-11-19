@@ -76,6 +76,7 @@ export class UserComponent implements OnInit{
       },
       error: (error) => {
         alert("Algo salio mal")
+        console.log(error)
       }
     })
   }
@@ -84,7 +85,7 @@ export class UserComponent implements OnInit{
     if(this.putForm.invalid)return;
 
     const body: PutUser = {
-      username: this.putForm.value.username + "@" +this.putForm.value.usernameExtension,
+      username: this.putForm.value.username + "@" + this.putForm.value.usernameExtension,
       firstname: this.putForm.value.firstname,
       lastname: this.putForm.value.lastname,
       tel: this.putForm.value.tel,
