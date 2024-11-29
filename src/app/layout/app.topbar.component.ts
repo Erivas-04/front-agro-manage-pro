@@ -62,9 +62,9 @@ export class AppTopBarComponent implements OnInit{
             }
         })
 
-        this.theme = "bootstrap4-dark-blue";
-        this.colorScheme = "dark";
-        this.color = "dark"
+        this.theme = "bootstrap4-light-blue";
+        this.colorScheme = "light";
+        this.color = "light"
         this.options = [
             { label: 'Salir', icon: 'pi pi-fw pi-sign-out', routerLink: ['/login'], command: () =>{
                 localStorage.setItem("token", null);
