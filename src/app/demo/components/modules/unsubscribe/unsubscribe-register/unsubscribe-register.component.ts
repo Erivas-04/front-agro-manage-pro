@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { UnsubscribeAnimalDTO } from 'src/app/interfaces/Request';
+import { RemoveAnimalFood, UnsubscribeAnimalDTO } from 'src/app/interfaces/Request';
 import { Cage, Message } from 'src/app/interfaces/Response';
 import { AnimalMovementService } from 'src/app/service/api/animal-movement.service';
 import { AnimalfoodMovementApiService } from 'src/app/service/api/animalfood-movement-api.service';
@@ -81,6 +81,11 @@ export class UnsubscribeRegisterComponent implements OnInit{
       const asig = localStorage.getItem("asig");
       const action = this.typeOfAnimalFoodRegisterSelected;
       const amount = this.AnimalFoodCageMovementForm.value.amount;
+      const body: RemoveAnimalFood = {
+        id_cage: this.cageSelect.id,
+        amount: this.AnimalFoodCageMovementForm.value.amount,
+        type: this.typeOfAnimalFoodRegisterSelected
+      }
 
       if (action == 0) {
 
@@ -92,7 +97,7 @@ export class UnsubscribeRegisterComponent implements OnInit{
           return
         }
 
-        this.animalFoodMovementService.removeAnimalFoodPOST(parseInt(asig), this.cageSelect.id, amount)
+        this.animalFoodMovementService.registerAnimalfood(parseInt(asig), body)
         .subscribe({
           next: data => {
             this.eventInCage.emit(data);
@@ -103,7 +108,7 @@ export class UnsubscribeRegisterComponent implements OnInit{
         });
       }
       else if (action == 1) {
-        this.animalFoodMovementService.addAnimalFoodPOST(parseInt(asig), this.cageSelect.id, amount)
+        this.animalFoodMovementService.registerAnimalfood(parseInt(asig), body)
         .subscribe({
           next: data => {
             this.eventInCage.emit(data);
@@ -131,9 +136,12 @@ export class UnsubscribeRegisterComponent implements OnInit{
 
         const body: UnsubscribeAnimalDTO = {
           weight: this.deleteAnimalCageMovementForm.value.weight,
-          age: this.deleteAnimalCageMovementForm.value.age
+          age: this.deleteAnimalCageMovementForm.value.age,
+          id_cage: this.cageSelect.id,
+          type_of_movement: action,
+          amount: 1
         }
-        this.animalMovementService.unsubscribeAnimalPOST(body, parseInt(asig), this.cageSelect.id, action)
+        this.animalMovementService.reportAnimal(parseInt(asig), body)
         .subscribe({
           next: data => {
             this.eventInCage.emit(data);
@@ -144,9 +152,15 @@ export class UnsubscribeRegisterComponent implements OnInit{
         });
       }
       else {
-        const amount = this.addAnimalCageMovementForm.value.animals_amount;
+        const body: UnsubscribeAnimalDTO = {
+          weight: 0,
+          age: 0,
+          id_cage: this.cageSelect.id,
+          type_of_movement: action,
+          amount: this.addAnimalCageMovementForm.value.animals_amount
+        }
 
-        this.animalMovementService.subscribeAnimalPOST(parseInt(asig), this.cageSelect.id, amount)
+        this.animalMovementService.reportAnimal(parseInt(asig), body)
         .subscribe({
           next: data => {
             this.eventInCage.emit(data);

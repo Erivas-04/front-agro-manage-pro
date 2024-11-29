@@ -7,7 +7,5 @@ export const appsettings = {
     companyUrl: `${urlbase}/company`,
     cageUrl: `${urlbase}/cage`,
     animalUrl: `${urlbase}/animal`,
-    animalMovementUrl: `${urlbase}/report/cage`,
-    animalFoodMovementUrl: `${urlbase}/report/food/cage/register`,
-    ReportsUrl: `${urlbase}/report/list`
+    ReportsUrl: `${urlbase}/report`
 }

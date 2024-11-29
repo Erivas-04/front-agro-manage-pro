@@ -84,5 +84,14 @@ export interface ConcentrateDTO {
 
 export interface UnsubscribeAnimalDTO {
     weight: number,
-    age: number
+    age: number,
+    id_cage: number,
+    type_of_movement: number,
+    amount: number
+}
+
+export interface RemoveAnimalFood {
+    id_cage: number,
+    type: number,
+    amount: number
 }

@@ -10,13 +10,9 @@ import { appsettings } from 'src/app/settings/appsettings';
 })
 export class AnimalMovementService {
   private http = inject(HttpClient);
-  private base = appsettings.animalMovementUrl;
+  private base = appsettings.ReportsUrl;
 
-  public unsubscribeAnimalPOST(body: UnsubscribeAnimalDTO, id_asig: number, id_cage: number, type_of_movement: number): Observable<Message> {
-    return this.http.post<Message>(`${this.base}/register/remove/${id_asig}/user/${id_cage}/cage/${type_of_movement}`,body)
-  }
-
-  public subscribeAnimalPOST(id_asig: number, id_cage: number, amount: number): Observable<Message> {
-    return this.http.post<Message>(`${this.base}/set/animals/${id_asig}/user/${id_cage}/cage/${amount}/amount`, null)
+  public reportAnimal(id_asig: number, body: UnsubscribeAnimalDTO): Observable<Message>{
+    return this.http.post<Message>(`${this.base}/animal/${id_asig}`, body);
   }
 }

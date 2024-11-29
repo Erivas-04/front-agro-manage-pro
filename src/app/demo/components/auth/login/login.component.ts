@@ -71,6 +71,9 @@ export class LoginComponent{
                                 return
                             }
                             this.router.navigate(["inicio"]);
+                        },
+                        error: error => {
+                            console.error(error.error)
                         }
                     })
 

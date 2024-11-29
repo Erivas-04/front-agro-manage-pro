@@ -12,6 +12,6 @@ export class ReportsApiService {
   private base = appsettings.ReportsUrl;
 
   get(asig: number): Observable<MovementCageView[]> {
-    return this.http.get<MovementCageView[]>(`${this.base}/${asig}/search`)
+    return this.http.get<MovementCageView[]>(`${this.base}/list/${asig}`)
   }
 }
